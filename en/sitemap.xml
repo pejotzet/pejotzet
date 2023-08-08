@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  
+  <url>
+    <loc>https://pejotzet.github.io/pejotzet/en/authors/</loc><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://pejotzet.github.io/pejotzet/en/categories/</loc><changefreq>weekly</changefreq><xhtml:link
+      rel="alternate"
+      hreflang="pl"
+      href="https://pejotzet.github.io/pejotzet/categories/"
+    /><xhtml:link
+      rel="alternate"
+      hreflang="en"
+      href="https://pejotzet.github.io/pejotzet/en/categories/"
+    /></url>
+  <url>
+    <loc>https://pejotzet.github.io/pejotzet/en/</loc><changefreq>weekly</changefreq><xhtml:link
+      rel="alternate"
+      hreflang="pl"
+      href="https://pejotzet.github.io/pejotzet/"
+    /><xhtml:link
+      rel="alternate"
+      hreflang="en"
+      href="https://pejotzet.github.io/pejotzet/en/"
+    /></url>
+  <url>
+    <loc>https://pejotzet.github.io/pejotzet/en/tags/</loc><changefreq>weekly</changefreq><xhtml:link
+      rel="alternate"
+      hreflang="pl"
+      href="https://pejotzet.github.io/pejotzet/tags/"
+    /><xhtml:link
+      rel="alternate"
+      hreflang="en"
+      href="https://pejotzet.github.io/pejotzet/en/tags/"
+    /></url></urlset>
