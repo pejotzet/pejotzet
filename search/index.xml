@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Search on Net i Dev Blog</title>
-    <link>https://pejotzet.github.com/pejotzet/search/</link>
+    <link>https://pejotzet.github.io/pejotzet/search/</link>
     <description>Recent content in Search on Net i Dev Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>pl</language><atom:link href="https://pejotzet.github.com/pejotzet/search/index.xml" rel="self" type="application/rss+xml" />
+    <language>pl</language><atom:link href="https://pejotzet.github.io/pejotzet/search/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
