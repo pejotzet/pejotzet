@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://pejotzet.github.com/hugodev/tags/code/</loc>
+    <lastmod>2023-08-05T10:06:43+00:00</lastmod>
+  </url><url>
+    <loc>https://pejotzet.github.com/hugodev/tags/devcontainer/</loc>
+    <lastmod>2023-08-05T10:06:43+00:00</lastmod>
+  </url><url>
+    <loc>https://pejotzet.github.com/hugodev/tags/github-actions/</loc>
+    <lastmod>2023-08-05T10:06:43+00:00</lastmod>
+  </url><url>
+    <loc>https://pejotzet.github.com/hugodev/tags/hugo/</loc>
+    <lastmod>2023-08-05T10:06:43+00:00</lastmod>
+  </url><url>
+    <loc>https://pejotzet.github.com/hugodev/post/static-site-in-hugo/</loc>
+    <lastmod>2023-08-05T10:06:43+00:00</lastmod>
+  </url><url>
+    <loc>https://pejotzet.github.com/hugodev/</loc>
+    <lastmod>2023-08-05T10:06:43+00:00</lastmod>
+  </url><url>
+    <loc>https://pejotzet.github.com/hugodev/post/</loc>
+    <lastmod>2023-08-05T10:06:43+00:00</lastmod>
+  </url><url>
+    <loc>https://pejotzet.github.com/hugodev/about/</loc>
+    <lastmod>2020-04-11T19:15:32+08:00</lastmod>
+  </url><url>
+    <loc>https://pejotzet.github.com/hugodev/archives/</loc>
+  </url><url>
+    <loc>https://pejotzet.github.com/hugodev/search/</loc>
+  </url>
+</urlset>
