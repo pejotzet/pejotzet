@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Net i Dev Blog</title>
+    <link>https://mikroprofesor.duckdns.org/post/</link>
+    <description>Recent content in Posts on Net i Dev Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pl</language>
+    <lastBuildDate>Sat, 05 Aug 2023 10:06:43 +0000</lastBuildDate><atom:link href="https://mikroprofesor.duckdns.org/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jak założyć i utrzymywać statyczny serwis WWW wykorzystując Docker&#39;a i Code</title>
+      <link>https://mikroprofesor.duckdns.org/post/static-site-in-hugo/</link>
+      <pubDate>Sat, 05 Aug 2023 10:06:43 +0000</pubDate>
+      
+      <guid>https://mikroprofesor.duckdns.org/post/static-site-in-hugo/</guid>
+      <description>&lt;p&gt;W poradniku pokazano jak wykorzystać konteneryzację i wsparcie dla niej w &lt;code&gt;Visual Studio Code&lt;/code&gt; do realizacji statycznego serwisu WWW.
+Opis obejmuje wykorzystanie kontenerów do stworzenia hermetycznego i przenośnego środowiska pracy
+oraz hosting lokalny i z użyciem &lt;code&gt;GitHub&lt;/code&gt;.
+Przedstawiona metoda lokalnego hostingu umożliwia dostęp do serwisu za pomocą bezpiecznego protokołu &lt;code&gt;HTTPS&lt;/code&gt; i umożliwia korzystanie z usług dynamicznego rozwiązywania nazw gdy adres &lt;code&gt;IP&lt;/code&gt; zrealizowanego serwera jest zmienny.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
