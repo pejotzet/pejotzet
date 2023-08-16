@@ -1,13 +1,443 @@
-<!doctype html><html lang=pl><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=HandheldFriendly content="True"><meta http-equiv=x-ua-compatible content="IE=edge"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=generator content="Hugo 0.116.1"><link rel=apple-touch-icon sizes=180x180 href=https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/favicon-16x16.png><link rel=manifest href=https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/site.webmanifest><link rel=mask-icon href=https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/safari-pinned-tab.svg color=#8aa2d3><link rel="shortcut icon" href=https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/favicon.ico><meta name=theme-color content="#ffffff"><title>Archives - Net i Dev Blog</title><meta name=author content="PeJotZet"><link rel=alternate type=application/rss+xml href=https://pejotzet.github.io/pejotzet/archives/index.xml title="Net i Dev Blog"><meta property="og:title" content="Archives"><meta name=twitter:title content="Archives"><meta property="og:type" content="website"><meta property="og:url" content="https://pejotzet.github.io/pejotzet/archives/"><meta property="og:image" content="https://pejotzet.github.io/img/og.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://pejotzet.github.io/img/og.png"><style>@media(prefers-color-scheme:dark){body[data-theme=auto] img{filter:brightness(60%)}}body[data-theme=dark] img{filter:brightness(60%)}</style><link rel=stylesheet href=https://pejotzet.github.io/pejotzet/assets/css/fuji.min.70d4d1242d0bccb3e2a2c0d666c76f4f231226d76c69aaaee6d49290b2680a2721c55bbbe447c365d0b29cb17422cb9df304de304b4d93765ecf8bd63fa1c2cc.css integrity="sha512-cNTRJC0LzLPiosDWZsdvTyMSJtdsaaqu5tSSkLJoCichxVu75EfDZdCynLF0Isud8wTeMEtNk3Zez4vWP6HCzA=="></head><body data-theme=auto data-theme-auto=true><script data-cfasync=false>var fujiThemeData=localStorage.getItem("fuji_data-theme");fujiThemeData?fujiThemeData!=="auto"&&document.body.setAttribute("data-theme",fujiThemeData==="dark"?"dark":"light"):localStorage.setItem("fuji_data-theme","auto")</script><header><div class="container-lg clearfix"><div class="col-12 header"><a class=title-main href=https://pejotzet.github.io/pejotzet>Net i Dev Blog</a>
-<span class=title-sub>Zapiski ku pamięci i na pożytek</span></div></div></header><main><div class="container-lg clearfix"><div class="col-12 col-md-9 float-left content"><div class=page-info><span>Wszystkie posty: 1</span></div><div class=post><h3 class="post-item post-title-archive"><a href=https://pejotzet.github.io/pejotzet/post/static-site-in-hugo/>Jak założyć i utrzymywać statyczny serwis WWW wykorzystując Docker'a i Code</a></h3><div class="post-item post-meta-archive"><span><i class="iconfont icon-today-sharp"></i>&nbsp;2023-08-05</span>
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.116.1">
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/favicon-16x16.png" />
+<link rel="manifest" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/site.webmanifest" />
+<link rel="mask-icon" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/safari-pinned-tab.svg" color="#8aa2d3" />
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/favicon.ico" />
+<meta name="theme-color" content="#ffffff" />
+
+
+<title>Archives - Net i Dev Blog</title>
+
+
+<meta name="author" content="PeJotZet" />
+
+
+
+<link rel="alternate" type="application/rss+xml" href="https://pejotzet.github.io/pejotzet/archives/index.xml" title="Net i Dev Blog" />
+
+<meta property="og:title" content="Archives" />
+<meta name="twitter:title" content="Archives" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://pejotzet.github.io/pejotzet/archives/" /><meta property="og:image" content="https://pejotzet.github.io/img/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://pejotzet.github.io/img/og.png" />
+
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        body[data-theme='auto'] img {
+            filter: brightness(60%);
+        }
+    }
+
+    body[data-theme='dark'] img {
+        filter: brightness(60%);
+    }
+</style>
+
+
+
+
+<link rel="stylesheet" href="https://pejotzet.github.io/pejotzet/assets/css/fuji.min.70d4d1242d0bccb3e2a2c0d666c76f4f231226d76c69aaaee6d49290b2680a2721c55bbbe447c365d0b29cb17422cb9df304de304b4d93765ecf8bd63fa1c2cc.css" integrity="sha512-cNTRJC0LzLPiosDWZsdvTyMSJtdsaaqu5tSSkLJoCichxVu75EfDZdCynLF0Isud8wTeMEtNk3Zez4vWP6HCzA==" />
+
+
+
+
+
+
+
+
+</head>
+
+<body
+  data-theme="auto"
+  data-theme-auto='true'
+  >
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://pejotzet.github.io/pejotzet/">Net i Dev Blog</a>
+            
+            <span class="title-sub">Zapiski ku pamięci i na pożytek</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+
+<div class="page-info">
+  <span>Liczba postów: 4</span>
+</div>
+
+
+
+<div class="post">
+  <h3 class="post-item post-title-archive">
+    <a href="https://pejotzet.github.io/pejotzet/post/2023-08-13-emulated-building-for-sbc/">Budowanie aplikacji dla SBC w środowisku emulowanym</a>
+  </h3>
+  <div class="post-item post-meta-archive">
+    <span><i class="iconfont icon-today-sharp"></i>&nbsp;2023-08-13</span>
+
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1383 słowa</span>
+
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/pejotzet/tags/c/c&#43;&#43;">C/C&#43;&#43;</a>&nbsp;<a href="/pejotzet/tags/sbc">SBC</a>&nbsp;<a href="/pejotzet/tags/docker">Docker</a>&nbsp;<a href="/pejotzet/tags/devcontainers">DevContainers</a>&nbsp;<a href="/pejotzet/tags/qemu">QEMU</a>&nbsp;</span>
+
+  </div>
+  <div class="post-item post-summary markdown-body">
+    <p>Komputery jednopłytkowe (ang. SBC — <em>Single Board Computer</em>) to uniwersalne urządzenia mikroprocesorowe pracujące pod kontrolą systemu operacyjnego.
+Zazwyczaj systemem tym jest Linux.
+Architektury komputerów jednopłytkowych mogą istotnie się różnić od architektur stosowanych dla komputerów osobistych.
+Niestety natywne uruchamianie kodu z wykorzystaniem GUI pracującego na systemie <em>target</em> jest często niewykonalne, głównie ze względu na ograniczony interfejs użytkownika i niezbyt duże zasoby urządzenia.
+Zazwyczaj problem ten rozwiązuje się przy użyciu narzędzi do kompilacji skrośnej.</p>
+<p>W niniejszym opracowaniu przedstawiono podejście alternatywne bazujące na wykorzystaniu emulacji architektury urządzenia docelowego z wykorzystaniem <code>QEMU</code> i połączonej z hermetyzacją środowiska developerskiego w kontenerze Docker&rsquo;a.
+Dzięki tej technice możliwe jest wygenerowanie kodu binarnego dla urządzenia docelowego bez korzystania z technik kompilacji skrośnej.
+Jako frontend dewelopera zaproponowano wykorzystanie programu <code>VS Code</code> oraz techniki <code>DevContainers</code>.</p>
+</div>
+</div>
+
+<div class="post">
+  <h3 class="post-item post-title-archive">
+    <a href="https://pejotzet.github.io/pejotzet/post/2023-08-12-how-to-debug-esp32-with-esp-prog/">Jak uruchamiać programy dla ESP32 korzystając z ESP-Prog</a>
+  </h3>
+  <div class="post-item post-meta-archive">
+    <span><i class="iconfont icon-today-sharp"></i>&nbsp;2023-08-12</span>
+
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1299 słowa</span>
+
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/pejotzet/tags/code">Code</a>&nbsp;<a href="/pejotzet/tags/platformio">PlatformIO</a>&nbsp;<a href="/pejotzet/tags/esp32">ESP32</a>&nbsp;<a href="/pejotzet/tags/esp-prog">ESP-Prog</a>&nbsp;</span>
+
+  </div>
+  <div class="post-item post-summary markdown-body">
+    <!-- <style>
+/* Definicje CSS */
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #007bff;
+}
+
+h2 {
+  color: #007bff;
+}
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+</style>
+ -->
+<style>
+.side-by-side-image {
+  width: 400px;
+  height: auto;
+  border: 1px solid #ccc;
+  margin: 10px;
+}
+</style>
+<p><code>ESP-Prog</code> jest programatorem i debuggerem do platformy ESP32.
+Niniejszy dokument opisuje jak korzystać z tego urządzenia w systemie Linux z zainstalowanym edytorem <code>Code</code> wyposażonym w rozszerzenie <code>PlatformIO</code>.</p>
+</div>
+</div>
+
+<div class="post">
+  <h3 class="post-item post-title-archive">
+    <a href="https://pejotzet.github.io/pejotzet/post/2023-08-12-c-cpp-development-for-sbc-in-code/">Jak kompilować i debugować aplikacje w C/C&#43;&#43; na komputery jednopłytkowe korzystając z VS Code</a>
+  </h3>
+  <div class="post-item post-meta-archive">
+    <span><i class="iconfont icon-today-sharp"></i>&nbsp;2023-08-12</span>
+
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;3728 słowa</span>
+
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/pejotzet/tags/c/c&#43;&#43;">C/C&#43;&#43;</a>&nbsp;<a href="/pejotzet/tags/sbc">SBC</a>&nbsp;<a href="/pejotzet/tags/docker">Docker</a>&nbsp;<a href="/pejotzet/tags/devcontainers">DevContainers</a>&nbsp;</span>
+
+  </div>
+  <div class="post-item post-summary markdown-body">
+    <p>Komputery jednopłytkowe (ang. <code>SBC</code> — <em>Single Board Computer</em>) to uniwersalne urządzenia mikroprocesorowe pracujące pod kontrolą systemu operacyjnego.
+Zazwyczaj systemem tym jest Linux.
+Architektury komputerów jednopłytkowych mogą istotnie się różnić od architektur stosowanych dla komputerów osobistych.
+W rezultacie przygotowanie aplikacji w postaci binarnej na urządzenie docelowe (<em>target</em>) na komputerze osobistym (<em>host</em>) wymaga wielu, często dość skomplikowanych, zabiegów.
+Uwaga niniejszego opracowania skupiona jest na realizacji różnych scenariuszy pracy z wykorzystaniem edytora <code>VS Code</code> i eliminujących konieczność instalacji i konfiguracji środowiska graficznego na <code>SBC</code>.</p>
+</div>
+</div>
+
+<div class="post">
+  <h3 class="post-item post-title-archive">
+    <a href="https://pejotzet.github.io/pejotzet/post/2023-08-05-static-site-in-hugo/">Jak założyć i utrzymywać statyczny serwis WWW wykorzystując Docker&#39;a i Code</a>
+  </h3>
+  <div class="post-item post-meta-archive">
+    <span><i class="iconfont icon-today-sharp"></i>&nbsp;2023-08-05</span>
+
 <span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;3709 słowa</span>
-<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href=/pejotzet/tags/code>Code</a>&nbsp;<a href=/pejotzet/tags/devcontainer>DevContainer</a>&nbsp;<a href=/pejotzet/tags/hugo>Hugo</a>&nbsp;<a href=/pejotzet/tags/github-actions>Github Actions</a>&nbsp;</span></div></div></div><aside class="col-12 col-md-3 float-left sidebar"><div class="sidebar-item sidebar-pages"><h3>Strony</h3><ul><li><a href=/pejotzet/>Główna</a></li><li><a href=/pejotzet/about/>O mnie</a></li><li><a href=/pejotzet/search/>Wyszukaj</a></li></ul></div><div class="sidebar-item sidebar-links"><h3>Linki</h3><ul><li><a href=https://github.com/pejotzet target=_blank><span>GitHub</span></a></li></ul></div><div class="sidebar-item sidebar-tags"><h3>Tagi</h3><div><span><a href=/pejotzet/tags/code/>Code</a></span>
-<span><a href=/pejotzet/tags/devcontainer/>DevContainer</a></span>
-<span><a href=/pejotzet/tags/github-actions/>Github Actions</a></span>
-<span><a href=/pejotzet/tags/hugo/>Hugo</a></span></div></div></aside></div><div class=btn><div class=btn-menu id=btn-menu><i class="iconfont icon-grid-sharp"></i></div><div class=btn-toggle-mode><i class="iconfont icon-contrast-sharp"></i></div><div class=btn-scroll-top><i class="iconfont icon-chevron-up-circle-sharp"></i></div></div><aside class=sidebar-mobile style=display:none><div class=sidebar-wrapper><div class="sidebar-item sidebar-pages"><h3>Strony</h3><ul><li><a href=/pejotzet/>Główna</a></li><li><a href=/pejotzet/about/>O mnie</a></li><li><a href=/pejotzet/search/>Wyszukaj</a></li></ul></div><div class="sidebar-item sidebar-links"><h3>Linki</h3><ul><li><a href=https://github.com/pejotzet target=_blank><span>GitHub</span></a></li></ul></div><div class="sidebar-item sidebar-tags"><h3>Tagi</h3><div><span><a href=/pejotzet/tags/code/>Code</a></span>
-<span><a href=/pejotzet/tags/devcontainer/>DevContainer</a></span>
-<span><a href=/pejotzet/tags/github-actions/>Github Actions</a></span>
-<span><a href=/pejotzet/tags/hugo/>Hugo</a></span></div></div></div></aside></main><footer><div class="container-lg clearfix"><div class="col-12 footer"><span>&copy; 2023-2023
-<a href=https://pejotzet.github.io/pejotzet>PeJotZet</a>
-| <a href=https://github.com/pejotzet/pejotzet>Source code</a>
-| Wspierane Przez <a href=https://github.com/dsrkafuu/hugo-theme-fuji/ target=_blank>Fuji-v2</a> & <a href=https://gohugo.io/ target=_blank>Hugo</a></span></div></div></footer><script defer src=/pejotzet/assets/js/fuji.min.645f1123be695831f419ab54c1bcba327325895c740014006e57070d4f3e5d6b553e929c4b46f40ea707249e9c7f7c2a446d32a39ce7319f80a34525586a8e0f.js integrity="sha512-ZF8RI75pWDH0GatUwby6MnMliVx0ABQAblcHDU8+XWtVPpKcS0b0DqcHJJ6cf3wqRG0yo5znMZ+Ao0UlWGqODw=="></script></body></html>
+
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/pejotzet/tags/code">Code</a>&nbsp;<a href="/pejotzet/tags/devcontainer">DevContainer</a>&nbsp;<a href="/pejotzet/tags/hugo">Hugo</a>&nbsp;<a href="/pejotzet/tags/github-actions">Github Actions</a>&nbsp;</span>
+
+  </div>
+  <div class="post-item post-summary markdown-body">
+    <p>W poradniku pokazano jak wykorzystać konteneryzację i wsparcie dla niej w <code>Visual Studio Code</code> do realizacji statycznego serwisu WWW.
+Opis obejmuje wykorzystanie kontenerów do stworzenia hermetycznego i przenośnego środowiska pracy
+oraz hosting lokalny i z użyciem <code>GitHub</code>.
+Przedstawiona metoda lokalnego hostingu umożliwia dostęp do serwisu za pomocą bezpiecznego protokołu <code>HTTPS</code> i umożliwia korzystanie z usług dynamicznego rozwiązywania nazw gdy adres <code>IP</code> zrealizowanego serwera jest zmienny.</p>
+</div>
+</div>
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Wybierz</h3>
+        <ul>
+            
+            <li>
+                <a href="/pejotzet/">Ostatnio dodane</a>
+            </li>
+            
+            <li>
+                <a href="/pejotzet/archives/">Ostatnio zmienione</a>
+            </li>
+            
+            <li>
+                <a href="/pejotzet/about/">O serwisie</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Linki</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/pejotzet" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tagi</h3>
+        <div>
+            
+            <span>
+                <a href="/pejotzet/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/code/">Code</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/devcontainer/">DevContainer</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/devcontainers/">DevContainers</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/docker/">Docker</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/esp-prog/">ESP-Prog</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/esp32/">ESP32</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/github-actions/">Github Actions</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/hugo/">Hugo</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/platformio/">PlatformIO</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/qemu/">QEMU</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/sbc/">SBC</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+</aside>
+
+        </div>
+        <div class="btn">
+    <div class="btn-menu" id="btn-menu">
+        <i class="iconfont icon-grid-sharp"></i>
+    </div>
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+<aside class="sidebar-mobile" style="display: none;">
+  <div class="sidebar-wrapper">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Wybierz</h3>
+        <ul>
+            
+            <li>
+                <a href="/pejotzet/">Ostatnio dodane</a>
+            </li>
+            
+            <li>
+                <a href="/pejotzet/archives/">Ostatnio zmienione</a>
+            </li>
+            
+            <li>
+                <a href="/pejotzet/about/">O serwisie</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Linki</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/pejotzet" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tagi</h3>
+        <div>
+            
+            <span>
+                <a href="/pejotzet/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/code/">Code</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/devcontainer/">DevContainer</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/devcontainers/">DevContainers</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/docker/">Docker</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/esp-prog/">ESP-Prog</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/esp32/">ESP32</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/github-actions/">Github Actions</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/hugo/">Hugo</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/platformio/">PlatformIO</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/qemu/">QEMU</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/sbc/">SBC</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+  </div>
+</aside>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            
+            <span>&copy; 2023-2023
+                <a href="https://pejotzet.github.io/pejotzet/">PeJotZet</a>
+                 | <a href="https://github.com/pejotzet/pejotzet">Source code</a> 
+                | Wspierane Przez <a href="https://github.com/dsrkafuu/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> &amp; <a href="https://gohugo.io/"
+                                                    target="_blank">Hugo</a> 
+            </span>
+        </div>
+    </div>
+</footer>
+
+    
+
+
+
+<script defer src="/pejotzet/assets/js/fuji.min.645f1123be695831f419ab54c1bcba327325895c740014006e57070d4f3e5d6b553e929c4b46f40ea707249e9c7f7c2a446d32a39ce7319f80a34525586a8e0f.js" integrity="sha512-ZF8RI75pWDH0GatUwby6MnMliVx0ABQAblcHDU8&#43;XWtVPpKcS0b0DqcHJJ6cf3wqRG0yo5znMZ&#43;Ao0UlWGqODw=="></script>
+
+
+
+</body>
+
+</html>

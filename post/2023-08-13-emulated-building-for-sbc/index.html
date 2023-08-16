@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.116.1">
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/favicon-16x16.png" />
+<link rel="manifest" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/site.webmanifest" />
+<link rel="mask-icon" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/safari-pinned-tab.svg" color="#8aa2d3" />
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/favicon.ico" />
+<meta name="theme-color" content="#ffffff" />
+
+
+<title>Budowanie aplikacji dla SBC w środowisku emulowanym - Net i Dev Blog</title>
+
+
+<meta name="author" content="Piotr Zawadzki" />
+
+
+
+<meta name="keywords" content="C/C&#43;&#43;, SBC, Docker, DevContainers, QEMU" />
+
+
+<meta property="og:title" content="Budowanie aplikacji dla SBC w środowisku emulowanym" />
+<meta name="twitter:title" content="Budowanie aplikacji dla SBC w środowisku emulowanym" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://pejotzet.github.io/pejotzet/post/2023-08-13-emulated-building-for-sbc/" /><meta property="og:description" content="Komputery jednopłytkowe (ang. SBC — Single Board Computer) to uniwersalne urządzenia mikroprocesorowe pracujące pod kontrolą systemu operacyjnego.
+Zazwyczaj systemem tym jest Linux.
+Architektury komputerów jednopłytkowych mogą istotnie się różnić od architektur stosowanych dla komputerów osobistych.
+Niestety natywne uruchamianie kodu z wykorzystaniem GUI pracującego na systemie target jest często niewykonalne, głównie ze względu na ograniczony interfejs użytkownika i niezbyt duże zasoby urządzenia.
+Zazwyczaj problem ten rozwiązuje się przy użyciu narzędzi do kompilacji skrośnej.
+W niniejszym opracowaniu przedstawiono podejście alternatywne bazujące na wykorzystaniu emulacji architektury urządzenia docelowego z wykorzystaniem QEMU i połączonej z hermetyzacją środowiska developerskiego w kontenerze Docker&rsquo;a.
+Dzięki tej technice możliwe jest wygenerowanie kodu binarnego dla urządzenia docelowego bez korzystania z technik kompilacji skrośnej.
+Jako frontend dewelopera zaproponowano wykorzystanie programu VS Code oraz techniki DevContainers." />
+<meta name="twitter:description" content="Komputery jednopłytkowe (ang. SBC — Single Board Computer) to uniwersalne urządzenia mikroprocesorowe pracujące pod kontrolą systemu operacyjnego.
+Zazwyczaj systemem tym jest Linux.
+Architektury komputerów jednopłytkowych mogą istotnie się różnić od architektur stosowanych dla komputerów osobistych.
+Niestety natywne uruchamianie kodu z wykorzystaniem GUI pracującego na systemie target jest często niewykonalne, głównie ze względu na ograniczony interfejs użytkownika i niezbyt duże zasoby urządzenia.
+Zazwyczaj problem ten rozwiązuje się przy użyciu narzędzi do kompilacji skrośnej.
+W niniejszym opracowaniu przedstawiono podejście alternatywne bazujące na wykorzystaniu emulacji architektury urządzenia docelowego z wykorzystaniem QEMU i połączonej z hermetyzacją środowiska developerskiego w kontenerze Docker&rsquo;a.
+Dzięki tej technice możliwe jest wygenerowanie kodu binarnego dla urządzenia docelowego bez korzystania z technik kompilacji skrośnej.
+Jako frontend dewelopera zaproponowano wykorzystanie programu VS Code oraz techniki DevContainers." /><meta property="og:image" content="https://pejotzet.github.io/img/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://pejotzet.github.io/img/og.png" /><meta property="article:published_time" content="2023-08-13T07:58:41+00:00" /><meta property="article:modified_time" content="2023-08-13T07:58:41+00:00" />
+
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        body[data-theme='auto'] img {
+            filter: brightness(60%);
+        }
+    }
+
+    body[data-theme='dark'] img {
+        filter: brightness(60%);
+    }
+</style>
+
+
+
+
+<link rel="stylesheet" href="https://pejotzet.github.io/pejotzet/assets/css/fuji.min.70d4d1242d0bccb3e2a2c0d666c76f4f231226d76c69aaaee6d49290b2680a2721c55bbbe447c365d0b29cb17422cb9df304de304b4d93765ecf8bd63fa1c2cc.css" integrity="sha512-cNTRJC0LzLPiosDWZsdvTyMSJtdsaaqu5tSSkLJoCichxVu75EfDZdCynLF0Isud8wTeMEtNk3Zez4vWP6HCzA==" />
+
+
+
+
+
+
+
+
+</head>
+
+<body
+  data-theme="auto"
+  data-theme-auto='true'
+  >
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://pejotzet.github.io/pejotzet/">Net i Dev Blog</a>
+            
+            <span class="title-sub">Zapiski ku pamięci i na pożytek</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+<article>
+    
+    <h2 class="post-item post-title">
+        <a href="https://pejotzet.github.io/pejotzet/post/2023-08-13-emulated-building-for-sbc/">Budowanie aplikacji dla SBC w środowisku emulowanym</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2023-08-13</span>
+
+<span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1383 słowa</span>
+
+<span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/pejotzet/tags/c/c&#43;&#43;">C/C&#43;&#43;</a>&nbsp;<a href="/pejotzet/tags/sbc">SBC</a>&nbsp;<a href="/pejotzet/tags/docker">Docker</a>&nbsp;<a href="/pejotzet/tags/devcontainers">DevContainers</a>&nbsp;<a href="/pejotzet/tags/qemu">QEMU</a>&nbsp;</span>
+
+    </div>
+    
+    <div class="post-content markdown-body">
+        <p>Komputery jednopłytkowe (ang. SBC — <em>Single Board Computer</em>) to uniwersalne urządzenia mikroprocesorowe pracujące pod kontrolą systemu operacyjnego.
+Zazwyczaj systemem tym jest Linux.
+Architektury komputerów jednopłytkowych mogą istotnie się różnić od architektur stosowanych dla komputerów osobistych.
+Niestety natywne uruchamianie kodu z wykorzystaniem GUI pracującego na systemie <em>target</em> jest często niewykonalne, głównie ze względu na ograniczony interfejs użytkownika i niezbyt duże zasoby urządzenia.
+Zazwyczaj problem ten rozwiązuje się przy użyciu narzędzi do kompilacji skrośnej.</p>
+<p>W niniejszym opracowaniu przedstawiono podejście alternatywne bazujące na wykorzystaniu emulacji architektury urządzenia docelowego z wykorzystaniem <code>QEMU</code> i połączonej z hermetyzacją środowiska developerskiego w kontenerze Docker&rsquo;a.
+Dzięki tej technice możliwe jest wygenerowanie kodu binarnego dla urządzenia docelowego bez korzystania z technik kompilacji skrośnej.
+Jako frontend dewelopera zaproponowano wykorzystanie programu <code>VS Code</code> oraz techniki <code>DevContainers</code>.</p>
+<p>Stworzenie środowiska pracy skrośnej jest zadaniem żmudnym, zwłaszcza jeżeli w systemie muszą współegzystować środowiska przeznaczone dla różnych urządzeń docelowych.
+Oczywiście ideałem byłoby środowisko pracy natywnej na urządzeniu <em>target</em>, jednak opcja ta jest często niemożliwa do realizacji praktycznej ze względu na jego ograniczone zasoby.
+Okazuje się, że konteneryzacja w połączeniu z emulacją architektury pozwala na stworzenia środowiska budowy aplikacji bardzo zbliżonego tego ideału.
+Przedstawiona dalej konfiguracja bardzo przypomina
+<a href="../../post/2023-08-12-c-cpp-development-for-sbc-in-code/#praca-zdalna-w-tunelu-ssh">pracę zdalną w tunelu SSH</a> <a href="#ref1">[1]</a>,
+jednak tym razem urządzenie docelowe nie jest w zaangażowane w proces budowania aplikacji.
+Oczywiście jest ono niezbędne do jej debugowania.
+Proces skrośnego debugowania opisano w podrozdziale &ldquo;<a href="../../post/2023-08-12-c-cpp-development-for-sbc-in-code/#uruchamianie-skro%c5%9bne">Uruchamianie skrośne</a>&rdquo; wspomnianego wcześniej opracowania <a href="#ref1">[1]</a>.</p>
+<p>Realizacja przedstawionego dalej scenariusza wymaga zainstalowania na systemie <em>host</em> <code>Docker</code>&lsquo;a i opcjonalnie <code>QEMU</code>.
+Pozostałe oprogramowanie zostanie umieszczone w kontenerach i może być łatwo usunięte z systemu jednym poleceniem.</p>
+<ul>
+<li>
+<p><a href="https://www.qemu.org/" target="_blank"><code>QEMU</code></a>
+to dostępne nieodpłatnie środowisko wirtualizacji systemów oraz dynamicznej emulacji architektur. Pierwsza opcja zapewnia możliwość uruchomienia pełnego systemu operacyjnego na wirtualnym urządzeniu. Innymi słowy, wirtualizator zapewnia abstrakcyjną warstwę dostępu do sprzętu. Szczególną cechą <em>QEMU</em> jest możliwość wirtualizacji systemów dla architektur innych niż architektura systemu goszczącego (popularne hypervisory takie jak <code>VirtualBox</code>, <code>VMWare Workstation</code> czy <code>Hyper-V</code> tego nie potrafią).
+Z kolei dynamiczna emulacja polega na tłumaczeniu w locie kodu binarnego z architektury systemu emulowanego na architekturę systemu goszczącego.
+Aplikacje uruchamiane w tym trybie korzystają bezpośrednio z jądra systemu goszczącego, w tym sprzętu dostępnego na tym systemie.
+Z punktu widzenia użytkownika, aplikacje uruchomione w tym trybie wyglądają identycznie jak aplikacje natywne, jedynie wykonują się wolniej ze względu na niezbędną warstwę translacji.</p>
+</li>
+<li>
+<p><a href="https://www.docker.com/" target="_blank"><code>Docker</code></a>
+to środowisko konteneryzacji zapewniające aplikacjom hermetyczne środowisko pracy (dostęp do usług jądra systemu, środowisko sieciowe, system plików), co umożliwia ich bezproblemową dystrybucję i pracę niezależnie od systemu operacyjnego gospodarza.
+W połączeniu z emulacją architektur zapewnianą przez <code>QEMU</code> możliwe jest uruchamianie i budowanie kontenerów na architekturę inną niż ta, na której uruchomiony jest <code>Docker</code>.</p>
+</li>
+</ul>
+<p>Idea budowy aplikacji z wykorzystaniem emulacji architektury zakłada</p>
+<ul>
+<li>
+<p>uruchomienie emulacji architektury systemu <em>target</em> (tego, na którym ma działać aplikacja) na systemie <em>host</em> (tego, na którym zostanie skompilowana),</p>
+</li>
+<li>
+<p>przygotowanie kontenera dla architektury <em>target</em>, który zawiera jego główny system plików uzupełniony o natywne dla <em>target</em> narzędzia budowania aplikacji (kompilator, linker, biblioteki),</p>
+</li>
+<li>
+<p>uruchomienie w emulowanym kontenerze kompilacji natywnej (czyli dla architektury <em>target</em>).</p>
+</li>
+</ul>
+<h2 id="aktywacja-emulacji-architektury-systemu-target">Aktywacja emulacji architektury systemu <em>target</em></h2>
+<p>W systemie <em>host</em> konieczna jest aktywacja emulacji architektury systemu <em>target</em>.
+Można to osiągnąć, instalując pakiet <code>qemu-user-static</code></p>
+<pre><code class="language-sh">apt install -y qemu-user-static
+</code></pre>
+<p>Alternatywnie, można skorzystać <a href="https://hub.docker.com/r/multiarch/qemu-user-static" target="_blank">z gotowego kontenera</a></p>
+<pre><code class="language-sh">docker run --rm --privileged multiarch/qemu-user-static:register --reset
+</code></pre>
+<p>Listę emulowanych architektur zwraca komenda</p>
+<pre><code class="language-sh">ls  /proc/sys/fs/binfmt_misc
+</code></pre>
+<h2 id="przygotowanie-kontenera-dla-architektury-systemu-target">Przygotowanie kontenera dla architektury systemu <em>target</em></h2>
+<p>W pustym katalogu należy umieścić archiwum z głównym systemem plików urządzenia <em>target</em>.
+Archiwum można utworzyć, pobierając, z zachowaniem uprawnień, pliki z karty SD zawierającej <em>firmware</em> urządzenia <em>target</em> (w poniższym przykładzie przyjęto, że po zamontowaniu w systemie <em>host</em> zawartość karty jest widoczna w katalogu &lsquo;/media/akuku/a6a42a97-600f-4ed7-ab06-6a2a169c62f3/&rsquo;).
+Archiwum &lsquo;<em>rootfs.tar</em>&rsquo; buduje komenda</p>
+<pre><code class="language-sh">(cd /media/akuku/a6a42a97-600f-4ed7-ab06-6a2a169c62f3/ ; sudo tar cvf - *) | cat &gt; ./rootfs.tar
+</code></pre>
+<p>Inspekcja zawartości archiwum komendą &rsquo;tar tf rootfs.tar | head -n 10&rsquo; powinna wykazać wynik podobny do poniższego (brak dodatkowych elementów przed &lsquo;<em>bin</em>&rsquo;, &lsquo;<em>boot</em>&rsquo;, itd.)</p>
+<pre><code class="language-sh">bin
+boot/
+boot/boot.cmd
+boot/orangepi_first_run.txt.template
+boot/boot.scr
+boot/orangepiEnv.txt
+boot/vmlinuz-4.9.170-sun50iw9
+boot/config-4.9.170-sun50iw9
+boot/uInitrd
+boot/boot.bmp
+</code></pre>
+<p>Zgodnie z zasadą <code>*wszystko można, co nie można, byle z wolna i ostrożna*</code>, <a href="#pobranie-g%c5%82%c3%b3wnego-systemu-plik%c3%b3w-z-dzia%c5%82aj%c4%85cego-urz%c4%85dzenia">główny system plików można również pobrać z działającego urządzenia</a>.</p>
+<p>W tym samym katalogu należy utworzyć plik <em>Dockerfile</em> o treści</p>
+<pre><code class="language-Dockerfile">FROM scratch
+
+ARG USERNAME=orangepi
+ARG USER_UID=1000
+ARG USER_GID=1000
+
+ADD rootfs.tar /
+
+USER root
+WORKDIR /root
+
+RUN apt-get update &amp;&amp; export DEBIAN_FRONTEND=noninteractive \
+    &amp;&amp; apt-get -y install build-essential make gpiod
+
+ENV HOME=/home/${USERNAME}
+# [Optional] Customize environment for nonroot user
+#RUN groupadd --gid &quot;${USER_GID}&quot; &quot;${USERNAME}&quot; &amp;&amp; \
+#    useradd --uid &quot;${USER_UID}&quot; --gid &quot;${USER_GID}&quot; --create-home &quot;${USERNAME}&quot; &amp;&amp; \
+#    apt-get update &amp;&amp; \
+#    apt-get -yq install sudo &amp;&amp; \
+#    echo &quot;${USERNAME}&quot; ALL=\(root\) NOPASSWD:ALL &gt; &quot;/etc/sudoers.d/${USERNAME}&quot; &amp;&amp; \
+#    chmod 0440 &quot;/etc/sudoers.d/${USERNAME}&quot; 
+#    &amp;&amp; \
+#    usermod -aG docker &quot;${USERNAME}&quot;
+
+WORKDIR ${HOME}
+USER ${USERNAME}
+
+CMD uname -a
+</code></pre>
+<p>Kompilacja w kontenerze pozostawia pliki binarne w katalogu projektu.
+Właścicielem tych plików jest użytkownik (określony w kontenerze, tutaj <em>orangepi</em>), w którego imieniu została wykonana kompilacja. Zatem, aby uniknąć kłopotów z dostępem do plików, należy zadbać o to, aby UID i GID użytkownika systemu <em>host</em> i użytkownika w kontenerze były takie same. Wartości te sprawdza się poleceniem <em>id</em> wydanym w terminalu. W powyższym przykładzie przyjęto, że zarówno użytkownik &lsquo;<em>akuku</em>&rsquo; systemu <em>host</em> oraz użytkownik &lsquo;<em>orangepi</em>&rsquo; zdefiniowany w kontenerze mają UID i GID równe 1000.</p>
+<p>Przedstawiony powyżej plik definiuje sposób budowy kontenera.
+Przed jej uruchomieniem należy sprawdzić, czy jest ona możliwa</p>
+<pre><code class="language-sh">docker buildx ls
+docker buildx use default
+</code></pre>
+<p>Jeżeli docelowa platforma jest na liście, to do zbudowania kontenera wystarczy poniższa komenda</p>
+<pre><code class="language-sh">docker buildx build --platform linux/arm64 -t pzawad/orangepi-emucontainer .
+</code></pre>
+<p>wydana w katalogu zawierającym pliki &lsquo;<em>Dockerfile</em>&rsquo; i &lsquo;<em>rootfs.tar</em>&rsquo;.
+Architekturę zbudowanego kontenera, wersję systemu operacyjnego oraz dostępność kompilatora należy oczywiście sprawdzić</p>
+<pre><code class="language-sh">docker image inspect pzawad/orangepi-emucontainer | grep Architecture
+docker run -it --rm pzawad/orangepi-emucontainer bash -c 'uname -a'
+docker run -it --rm pzawad/orangepi-emucontainer bash -c 'cat /etc/issue'
+docker run -it --rm pzawad/orangepi-emucontainer bash -c 'gcc -v'
+</code></pre>
+<h2 id="kompilacja-emulowana-z-wykorzystaniem-kontenera">Kompilacja emulowana z wykorzystaniem kontenera</h2>
+<p>Kontener z narzędziami dla architektury docelowej pozwala na skompilowanie na systemie <em>host</em> kodu dla systemu <em>target</em> w trybie kompilacji natywnej.
+Katalog ze źródłami aplikacji jest mapowany do wnętrza kontenera, w którym wywoływany jest kompilator natywny dla platformy docelowej. Kompilator &ldquo;widzi&rdquo; kopię głównego systemu plików urządzenia <em>target</em>, dzięki czemu wszystkie pliki nagłówkowe i biblioteki dynamiczne są na właściwym miejscu.
+Komenda realizująca kompilację ma np. postać</p>
+<pre><code class="language-sh">docker run -it --rm --platform=linux/arm64 --name omgthisworks -v ${PWD}:/home/orangepi pzawad/orangepi-emucontainer make
+</code></pre>
+<p>Integracja z <em>Visual Studio Code</em> nie nastręcza trudności.
+Do pliku &lsquo;<em>.vscode/tasks.json</em>&rsquo; wystarczy dodać zadanie postaci</p>
+<pre><code class="language-json">{
+  &quot;version&quot;: &quot;2.0.0&quot;,
+  &quot;tasks&quot;: [
+    {
+      &quot;label&quot;: &quot;Native Build in container&quot;,
+      &quot;type&quot;: &quot;shell&quot;,
+      &quot;command&quot;: &quot; docker run -it --rm --platform=linux/arm64 --name omgthisworks -v ${workspaceFolder}:/home/orangepi pzawad/orangepi-emucontainer make&quot;,
+      &quot;group&quot;: {
+        &quot;isDefault&quot;: true,
+        &quot;kind&quot;: &quot;build&quot;
+      },
+      &quot;options&quot;: {
+        &quot;cwd&quot;: &quot;${workspaceFolder}&quot;
+      },
+      &quot;problemMatcher&quot;: [
+          &quot;$gcc&quot;
+      ],
+      &quot;detail&quot;: &quot;This task maps workspace into container and triggers native build inside.&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="podsumowanie">Podsumowanie</h2>
+<p>Zaletą opisanego podejścia jest prawidłowe dynamiczne łączenie bibliotek bez żadnych dodatkowych zabiegów.
+Co więcej, nie jest konieczna instalacja narzędzi do kompilacji ani na systemie <em>target</em>, ani na systemie <em>host</em>. Kontener służący do tworzenia aplikacji może być łatwo dystrybuowany pomiędzy programistami. W efekcie procedurę przygotowania kontenera zawierającego oprogramowanie niezbędne do pracy nad aplikacja wystarczy przeprowadzić tylko raz. Ma to olbrzymie znaczenie w pracy grupowej gdzie hermetyczność narzędzi i powtarzalność procedur mają ogromne znaczenie.</p>
+<h2 id="bibliografia">Bibliografia</h2>
+<p>[1<a id="ref1"></a>] <a href="
+
+
+
+https://pejotzet.github.io/pejotzet/
+
+
+">PeJotZet</a>, &ldquo;<a href="../../post/2023-08-12-c-cpp-development-for-sbc-in-code/">
+
+
+Jak kompilować i debugować aplikacje w C/C&#43;&#43; na komputery jednopłytkowe korzystając z VS Code
+
+</a>&rdquo;, 2023</p>
+<h2 id="kruczki-i-sztuczki">Kruczki i sztuczki</h2>
+<h3 id="zdalny-dostęp-do-konta-administratora-bez-podawania-hasła">Zdalny dostęp do konta administratora bez podawania hasła</h3>
+<ol>
+<li>
+<p>Zdalny dostęp do konta administratora</p>
+<p>W pliku <em>/etc/ssh/sshd_config</em>&rsquo; (<em>target</em>) należy ustawić opcję</p>
+<pre><code class="language-txt">PermitRootLogin   yes
+</code></pre>
+</li>
+<li>
+<p>Logowanie bez konieczności podawania hasła</p>
+<ul>
+<li>
+<p>Serwer <em>ssh</em> musi zezwalać na uwierzytelnienie za pomocą kluczy publicznych.
+W pliku <em>/etc/ssh/sshd_config</em>&rsquo; (<em>target</em>) należy ustawić opcje</p>
+<pre><code class="language-txt">PubkeyAuthentication   yes
+AuthorizedKeysFile    .ssh/authorized_keys    .ssh/authorized_keys2
+</code></pre>
+</li>
+<li>
+<p>Użytkownik systemu <em>host</em> musi mieć wygenerowane osobiste klucze <em>ssh</em>. Generacja komendą</p>
+<pre><code class="language-txt">ssh-keygen
+</code></pre>
+<p>Opcją &lsquo;-t&rsquo; można wymusić typ klucza, a opcją &lsquo;-b&rsquo; jego długość. Wygenerowane klucze, prywatny i publiczny, umieszczone są w podkatalogu &lsquo;.ssh&rsquo; katalogu domowego (publiczny ma rozszerzenie &lsquo;pub&rsquo;).</p>
+</li>
+<li>
+<p>Klucz publiczny należy umieścić na systemie <em>target</em> w pliku &lsquo;<em>.ssh/authorized_keys</em>&rsquo; na
+koncie docelowym. Wygodne kopiowanie zapewnia komenda (poniżej użyto konta <em>root</em>)</p>
+<pre><code class="language-sh">ssh-copy-id root@opi.usb
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="pobranie-głównego-systemu-plików-z-działającego-urządzenia">Pobranie głównego systemu plików z działającego urządzenia</h3>
+<p>Jeżeli główny system plików archiwizujemy z działającego urządzenia <em>target</em>, to przed operacją archiwizacji katalog główny należy zamontować w innym miejscu przy użyciu &lsquo;mount &ndash;bind&rsquo; i dopiero w nim wydać komendę archiwizacji. Wynik archiwizacji najlepiej od razu pobrać na system <em>host</em></p>
+<pre><code class="language-sh">ssh root@opi.usb 'mkdir -p /tmp/rootfs &amp;&amp; mount --bind / /tmp/rootfs &amp;&amp; cd /tmp/rootfs/ &amp;&amp; tar cf - *' &gt; rootfs.tar
+</code></pre>
+<p>W powyższej komendzie <em>opi.usb</em> to nazwa sieciowa urządzenia <em>target</em> i może być zastąpiona przez jego numer IP.</p>
+    </div>
+</article>
+
+
+<div class="license markdown-body">
+    <blockquote>
+        <p>O ile nie zaznaczono inaczej, zawartość tej witryny jest objęta licencją <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a>.</p>
+    </blockquote>
+</div>
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Wybierz</h3>
+        <ul>
+            
+            <li>
+                <a href="/pejotzet/">Ostatnio dodane</a>
+            </li>
+            
+            <li>
+                <a href="/pejotzet/archives/">Ostatnio zmienione</a>
+            </li>
+            
+            <li>
+                <a href="/pejotzet/about/">O serwisie</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Linki</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/pejotzet" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tagi</h3>
+        <div>
+            
+            <span>
+                <a href="/pejotzet/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/code/">Code</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/devcontainer/">DevContainer</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/devcontainers/">DevContainers</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/docker/">Docker</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/esp-prog/">ESP-Prog</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/esp32/">ESP32</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/github-actions/">Github Actions</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/hugo/">Hugo</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/platformio/">PlatformIO</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/qemu/">QEMU</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/sbc/">SBC</a>
+            </span>
+            
+        </div>
+    </div>
+    <div class="sidebar-item sidebar-toc">
+        <h3>Spis Treści</h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#aktywacja-emulacji-architektury-systemu-target">Aktywacja emulacji architektury systemu <em>target</em></a></li>
+    <li><a href="#przygotowanie-kontenera-dla-architektury-systemu-target">Przygotowanie kontenera dla architektury systemu <em>target</em></a></li>
+    <li><a href="#kompilacja-emulowana-z-wykorzystaniem-kontenera">Kompilacja emulowana z wykorzystaniem kontenera</a></li>
+    <li><a href="#podsumowanie">Podsumowanie</a></li>
+    <li><a href="#bibliografia">Bibliografia</a></li>
+    <li><a href="#kruczki-i-sztuczki">Kruczki i sztuczki</a>
+      <ul>
+        <li><a href="#zdalny-dostęp-do-konta-administratora-bez-podawania-hasła">Zdalny dostęp do konta administratora bez podawania hasła</a></li>
+        <li><a href="#pobranie-głównego-systemu-plików-z-działającego-urządzenia">Pobranie głównego systemu plików z działającego urządzenia</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+</aside>
+
+        </div>
+        <div class="btn">
+    <div class="btn-menu" id="btn-menu">
+        <i class="iconfont icon-grid-sharp"></i>
+    </div>
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+<aside class="sidebar-mobile" style="display: none;">
+  <div class="sidebar-wrapper">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Wybierz</h3>
+        <ul>
+            
+            <li>
+                <a href="/pejotzet/">Ostatnio dodane</a>
+            </li>
+            
+            <li>
+                <a href="/pejotzet/archives/">Ostatnio zmienione</a>
+            </li>
+            
+            <li>
+                <a href="/pejotzet/about/">O serwisie</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Linki</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/pejotzet" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tagi</h3>
+        <div>
+            
+            <span>
+                <a href="/pejotzet/tags/c/c&#43;&#43;/">C/C&#43;&#43;</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/code/">Code</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/devcontainer/">DevContainer</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/devcontainers/">DevContainers</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/docker/">Docker</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/esp-prog/">ESP-Prog</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/esp32/">ESP32</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/github-actions/">Github Actions</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/hugo/">Hugo</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/platformio/">PlatformIO</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/qemu/">QEMU</a>
+            </span>
+            
+            <span>
+                <a href="/pejotzet/tags/sbc/">SBC</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>Spis Treści</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#aktywacja-emulacji-architektury-systemu-target">Aktywacja emulacji architektury systemu <em>target</em></a></li>
+    <li><a href="#przygotowanie-kontenera-dla-architektury-systemu-target">Przygotowanie kontenera dla architektury systemu <em>target</em></a></li>
+    <li><a href="#kompilacja-emulowana-z-wykorzystaniem-kontenera">Kompilacja emulowana z wykorzystaniem kontenera</a></li>
+    <li><a href="#podsumowanie">Podsumowanie</a></li>
+    <li><a href="#bibliografia">Bibliografia</a></li>
+    <li><a href="#kruczki-i-sztuczki">Kruczki i sztuczki</a>
+      <ul>
+        <li><a href="#zdalny-dostęp-do-konta-administratora-bez-podawania-hasła">Zdalny dostęp do konta administratora bez podawania hasła</a></li>
+        <li><a href="#pobranie-głównego-systemu-plików-z-działającego-urządzenia">Pobranie głównego systemu plików z działającego urządzenia</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    
+  </div>
+</aside>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            
+            <span>&copy; 2023-2023
+                <a href="https://pejotzet.github.io/pejotzet/">PeJotZet</a>
+                 | <a href="https://github.com/pejotzet/pejotzet">Source code</a> 
+                | Wspierane Przez <a href="https://github.com/dsrkafuu/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> &amp; <a href="https://gohugo.io/"
+                                                    target="_blank">Hugo</a> 
+            </span>
+        </div>
+    </div>
+</footer>
+
+    
+<script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha512-N9IJRoc3LaP3NDoiGkcPa4gG94kapGpaA5Zq9/Dr04uf5TbLFU5q0o8AbRhLKUUlp8QFS2u7S+Yti0U7QtuZvQ==" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js" integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ==" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.27.0/components/prism-core.min.js" integrity="sha512-LCKPTo0gtJ74zCNMbWw04ltmujpzSR4oW+fgN+Y1YclhM5ZrHCZQAJE4quEodcI/G122sRhSGU2BsSRUZ2Gu3w==" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.27.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-GP4x8UWxWyh4BMbyJGOGneiTbkrWEF5izsVJByzVLodP8CuJH/n936+yQDMJJrOPUHLgyPbLiGw2rXmdvGdXHA==" crossorigin="anonymous"></script>
+
+
+
+<script defer src="/pejotzet/assets/js/fuji.min.645f1123be695831f419ab54c1bcba327325895c740014006e57070d4f3e5d6b553e929c4b46f40ea707249e9c7f7c2a446d32a39ce7319f80a34525586a8e0f.js" integrity="sha512-ZF8RI75pWDH0GatUwby6MnMliVx0ABQAblcHDU8&#43;XWtVPpKcS0b0DqcHJJ6cf3wqRG0yo5znMZ&#43;Ao0UlWGqODw=="></script>
+
+
+
+</body>
+
+</html>
