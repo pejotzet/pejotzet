@@ -1,67 +1,77 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://pejotzet.github.io/pejotzet/post/2023-08-13-emulated-building-for-sbc/</loc>
-    <lastmod>2023-08-15T01:07:35+00:00</lastmod>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/tags/devcontainers/</loc>
-    <lastmod>2023-08-15T01:07:35+00:00</lastmod>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/tags/docker/</loc>
-    <lastmod>2023-08-15T01:07:35+00:00</lastmod>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/</loc>
-    <lastmod>2023-08-16T01:07:16+00:00</lastmod>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/post/</loc>
-    <lastmod>2023-08-16T01:07:16+00:00</lastmod>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/tags/qemu/</loc>
-    <lastmod>2023-08-15T01:07:35+00:00</lastmod>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/tags/sbc/</loc>
-    <lastmod>2023-08-15T01:07:35+00:00</lastmod>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/tags/code/</loc>
-    <lastmod>2023-08-16T01:07:16+00:00</lastmod>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/tags/esp-prog/</loc>
-    <lastmod>2023-08-16T01:07:16+00:00</lastmod>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/tags/esp32/</loc>
-    <lastmod>2023-08-16T01:07:16+00:00</lastmod>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/post/2023-08-12-c-cpp-development-for-sbc-in-code/</loc>
-    <lastmod>2023-08-12T01:06:55+00:00</lastmod>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/post/2023-08-12-how-to-debug-esp32-with-esp-prog/</loc>
-    <lastmod>2023-08-16T01:07:16+00:00</lastmod>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/tags/platformio/</loc>
-    <lastmod>2023-08-16T01:07:16+00:00</lastmod>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/tags/devcontainer/</loc>
-    <lastmod>2023-08-13T01:06:18+00:00</lastmod>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/tags/github-actions/</loc>
-    <lastmod>2023-08-13T01:06:18+00:00</lastmod>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/tags/hugo/</loc>
-    <lastmod>2023-08-13T01:06:18+00:00</lastmod>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/post/2023-08-05-static-site-in-hugo/</loc>
-    <lastmod>2023-08-13T01:06:18+00:00</lastmod>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/about/</loc>
-    <lastmod>2020-04-11T19:15:32+08:00</lastmod>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/archives/</loc>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/tags/c/c&#43;&#43;/</loc>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/recently/</loc>
-  </url><url>
-    <loc>https://pejotzet.github.io/pejotzet/search/</loc>
-  </url>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://pejotzet.github.io/pejotzet/posts/static-site-in-hugo/</loc>
+<lastmod>2023-08-19T09:11:33+02:00</lastmod>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/posts/C-Cpp-development-for-SBC-in-Code/</loc>
+<lastmod>2023-08-12T15:13:20+02:00</lastmod>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/posts/how-to-debug-esp32-with-esp-prog/</loc>
+<lastmod>2023-08-12T15:13:20+02:00</lastmod>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/posts/emulated-building-for-SBC/</loc>
+<lastmod>2023-08-19T09:11:33+02:00</lastmod>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/categories/</loc>
+<lastmod>2023-08-19T10:44:35+02:00</lastmod>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/tags/</loc>
+<lastmod>2023-08-19T10:44:35+02:00</lastmod>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/archives/</loc>
+<lastmod>2023-08-19T10:44:35+02:00</lastmod>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/about/</loc>
+<lastmod>2023-08-19T10:44:35+02:00</lastmod>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/</loc>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/tags/code/</loc>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/tags/devcontainer/</loc>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/tags/hugo/</loc>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/tags/github-actions/</loc>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/tags/c-c/</loc>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/tags/sbc/</loc>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/tags/docker/</loc>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/tags/devcontainers/</loc>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/tags/platformio/</loc>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/tags/esp32/</loc>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/tags/esp-prog/</loc>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/tags/qemu/</loc>
+</url>
+<url>
+<loc>https://pejotzet.github.io/pejotzet/categories/programowanie/</loc>
+</url>
 </urlset>
