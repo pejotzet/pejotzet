@@ -1,0 +1,176 @@
+
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://mikroprofesor.duckdns.org/</id>
+  <title>Net i Dev Blog</title>
+  <subtitle>W serwisie znajdziesz porady dotyczące programowania sieci komputerowych.</subtitle>
+  <updated>2023-08-19T13:11:12+02:00</updated>
+  <author>
+    <name>PeJotZet</name>
+    <uri>https://mikroprofesor.duckdns.org/</uri>
+  </author>
+  <link rel="self" type="application/atom+xml" href="https://mikroprofesor.duckdns.org/feed.xml"/>
+  <link rel="alternate" type="text/html" hreflang="pl"
+    href="https://mikroprofesor.duckdns.org/"/>
+  <generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator>
+  <rights> © 2023 PeJotZet </rights>
+  <icon>/assets/img/favicons/favicon.ico</icon>
+  <logo>/assets/img/favicons/favicon-96x96.png</logo>
+
+
+  
+  <entry>
+    <title>Budowanie aplikacji dla SBC w środowisku emulowanym</title>
+    <link href="https://mikroprofesor.duckdns.org/posts/emulated-building-for-SBC/" rel="alternate" type="text/html" title="Budowanie aplikacji dla SBC w środowisku emulowanym" />
+    <published>2023-08-13T09:58:41+02:00</published>
+  
+    <updated>2023-08-13T09:58:41+02:00</updated>
+  
+    <id>https://mikroprofesor.duckdns.org/posts/emulated-building-for-SBC/</id>
+    <content src="https://mikroprofesor.duckdns.org/posts/emulated-building-for-SBC/" />
+    <author>
+      <name>Piotr Zawadzki</name>
+    </author>
+
+  
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Komputery jednopłytkowe (ang. SBC — Single Board Computer) to uniwersalne urządzenia mikroprocesorowe pracujące pod kontrolą systemu operacyjnego.
+Zazwyczaj systemem tym jest Linux.
+Architektury komputerów jednopłytkowych mogą istotnie się różnić od architektur stosowanych dla komputerów osobistych.
+Niestety natywne uruchamianie kodu z wykorzystaniem GUI pracującego na systemie target jest częs...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Jak uruchamiać programy dla ESP32 korzystając z ESP-Prog</title>
+    <link href="https://mikroprofesor.duckdns.org/posts/how-to-debug-esp32-with-esp-prog/" rel="alternate" type="text/html" title="Jak uruchamiać programy dla ESP32 korzystając z ESP-Prog" />
+    <published>2023-08-12T15:13:20+02:00</published>
+  
+    <updated>2023-08-12T15:13:20+02:00</updated>
+  
+    <id>https://mikroprofesor.duckdns.org/posts/how-to-debug-esp32-with-esp-prog/</id>
+    <content src="https://mikroprofesor.duckdns.org/posts/how-to-debug-esp32-with-esp-prog/" />
+    <author>
+      <name>Piotr Zawadzki</name>
+    </author>
+
+  
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      
+
+
+ESP-Prog jest programatorem i debuggerem do platformy ESP32.
+Niniejszy dokument opisuje jak korzystać z tego urządzenia w systemie Linux z zainstalowanym edytorem Code wyposażonym w rozszerzenie PlatformIO.
+
+
+
+Anatomia ESP-Prog
+
+Płyta ESP-Prog jest wyposażona w dwa złącza służące do komunikacji z urządzeniem docelowym.
+
+
+
+Złącze PROG służy do wgrania nowej wersji firmware’u na urządzenie doc...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Jak kompilować i debugować aplikacje w C/C++ na komputery jednopłytkowe korzystając z VS Code</title>
+    <link href="https://mikroprofesor.duckdns.org/posts/C-Cpp-development-for-SBC-in-Code/" rel="alternate" type="text/html" title="Jak kompilować i debugować aplikacje w C/C++ na komputery jednopłytkowe korzystając z VS Code" />
+    <published>2023-08-12T15:13:20+02:00</published>
+  
+    <updated>2023-08-12T15:13:20+02:00</updated>
+  
+    <id>https://mikroprofesor.duckdns.org/posts/C-Cpp-development-for-SBC-in-Code/</id>
+    <content src="https://mikroprofesor.duckdns.org/posts/C-Cpp-development-for-SBC-in-Code/" />
+    <author>
+      <name>Piotr Zawadzki</name>
+    </author>
+
+  
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Komputery jednopłytkowe (ang. SBC — Single Board Computer) to uniwersalne urządzenia mikroprocesorowe pracujące pod kontrolą systemu operacyjnego.
+Zazwyczaj systemem tym jest Linux.
+Architektury komputerów jednopłytkowych mogą istotnie się różnić od architektur stosowanych dla komputerów osobistych.
+W rezultacie przygotowanie aplikacji w postaci binarnej na urządzenie docelowe (target) na kompu...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Jak założyć i utrzymywać statyczny serwis WWW wykorzystując Docker'a, Code i Hugo</title>
+    <link href="https://mikroprofesor.duckdns.org/posts/static-site-in-hugo/" rel="alternate" type="text/html" title="Jak założyć i utrzymywać statyczny serwis WWW wykorzystując Docker&amp;apos;a, Code i Hugo" />
+    <published>2023-08-05T12:06:43+02:00</published>
+  
+    <updated>2023-08-05T12:06:43+02:00</updated>
+  
+    <id>https://mikroprofesor.duckdns.org/posts/static-site-in-hugo/</id>
+    <content src="https://mikroprofesor.duckdns.org/posts/static-site-in-hugo/" />
+    <author>
+      <name>Piotr Zawadzki</name>
+    </author>
+
+  
+    
+    <category term="Programowanie" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      W poradniku pokazano jak wykorzystać konteneryzację i wsparcie dla niej w Visual Studio Code do realizacji statycznego serwisu WWW.
+Opis obejmuje wykorzystanie kontenerów do stworzenia hermetycznego i przenośnego środowiska pracy
+oraz hosting lokalny i z użyciem GitHub.
+Przedstawiona metoda lokalnego hostingu umożliwia dostęp do serwisu za pomocą bezpiecznego protokołu HTTPS i umożliwia korzyst...
+    </summary>
+  
+
+  </entry>
+
+</feed>
+
+

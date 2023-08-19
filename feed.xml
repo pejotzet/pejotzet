@@ -4,7 +4,7 @@
   <id>https://pejotzet.github.io/pejotzet/</id>
   <title>Net i Dev Blog</title>
   <subtitle>W serwisie znajdziesz porady dotyczące programowania sieci komputerowych.</subtitle>
-  <updated>2023-08-19T10:44:35+02:00</updated>
+  <updated>2023-08-19T13:17:11+02:00</updated>
   <author>
     <name>PeJotZet</name>
     <uri>https://pejotzet.github.io/pejotzet/</uri>
@@ -24,7 +24,7 @@
     <link href="https://pejotzet.github.io/pejotzet/posts/emulated-building-for-SBC/" rel="alternate" type="text/html" title="Budowanie aplikacji dla SBC w środowisku emulowanym" />
     <published>2023-08-13T09:58:41+02:00</published>
   
-    <updated>2023-08-19T09:11:33+02:00</updated>
+    <updated>2023-08-13T09:58:41+02:00</updated>
   
     <id>https://pejotzet.github.io/pejotzet/posts/emulated-building-for-SBC/</id>
     <content src="https://pejotzet.github.io/pejotzet/posts/emulated-building-for-SBC/" />
@@ -140,7 +140,7 @@ W rezultacie przygotowanie aplikacji w postaci binarnej na urządzenie docelowe 
     <link href="https://pejotzet.github.io/pejotzet/posts/static-site-in-hugo/" rel="alternate" type="text/html" title="Jak założyć i utrzymywać statyczny serwis WWW wykorzystując Docker&amp;apos;a, Code i Hugo" />
     <published>2023-08-05T12:06:43+02:00</published>
   
-    <updated>2023-08-19T09:11:33+02:00</updated>
+    <updated>2023-08-05T12:06:43+02:00</updated>
   
     <id>https://pejotzet.github.io/pejotzet/posts/static-site-in-hugo/</id>
     <content src="https://pejotzet.github.io/pejotzet/posts/static-site-in-hugo/" />
