@@ -30,7 +30,7 @@
 <meta name="twitter:card" content="summary">
 <meta property="twitter:title" content="Budowanie aplikacji dla SBC w środowisku emulowanym">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Piotr Zawadzki"},"dateModified":"2023-08-13T09:58:41+02:00","datePublished":"2023-08-13T09:58:41+02:00","description":"Komputery jednopłytkowe (ang. SBC — Single Board Computer) to uniwersalne urządzenia mikroprocesorowe pracujące pod kontrolą systemu operacyjnego. Zazwyczaj systemem tym jest Linux. Architektury komputerów jednopłytkowych mogą istotnie się różnić od architektur stosowanych dla komputerów osobistych. Niestety natywne uruchamianie kodu z wykorzystaniem GUI pracującego na systemie target jest często niewykonalne, głównie ze względu na ograniczony interfejs użytkownika i niezbyt duże zasoby urządzenia. Zazwyczaj problem ten rozwiązuje się przy użyciu narzędzi do kompilacji skrośnej.","headline":"Budowanie aplikacji dla SBC w środowisku emulowanym","mainEntityOfPage":{"@type":"WebPage","@id":"https://mikroprofesor.duckdns.org/posts/emulated-building-for-SBC/"},"url":"https://mikroprofesor.duckdns.org/posts/emulated-building-for-SBC/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Piotr Zawadzki"},"dateModified":"2023-08-19T18:19:51+02:00","datePublished":"2023-08-13T09:58:41+02:00","description":"Komputery jednopłytkowe (ang. SBC — Single Board Computer) to uniwersalne urządzenia mikroprocesorowe pracujące pod kontrolą systemu operacyjnego. Zazwyczaj systemem tym jest Linux. Architektury komputerów jednopłytkowych mogą istotnie się różnić od architektur stosowanych dla komputerów osobistych. Niestety natywne uruchamianie kodu z wykorzystaniem GUI pracującego na systemie target jest często niewykonalne, głównie ze względu na ograniczony interfejs użytkownika i niezbyt duże zasoby urządzenia. Zazwyczaj problem ten rozwiązuje się przy użyciu narzędzi do kompilacji skrośnej.","headline":"Budowanie aplikacji dla SBC w środowisku emulowanym","mainEntityOfPage":{"@type":"WebPage","@id":"https://mikroprofesor.duckdns.org/posts/emulated-building-for-SBC/"},"url":"https://mikroprofesor.duckdns.org/posts/emulated-building-for-SBC/"}</script>
 <!-- End Jekyll SEO tag -->
 
   
@@ -468,6 +468,99 @@
 
 
 
+  
+  
+
+  <!-- CDN URL -->
+  
+
+  <!-- Add image path -->
+  
+
+  
+    
+      
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+
+    
+
+    
+
+    <!-- lazy-load images <https://github.com/aFarkas/lazysizes#readme> -->
+    
+    
+
+    <!-- add image placeholder -->
+    
+      
+    
+
+    <!-- Bypass the HTML-proofer test -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+      
+    
+
+    <!-- combine -->
+    
+
+  
+
+  
+
+
 
 <!-- Add header for code snippets -->
 
@@ -660,6 +753,23 @@
 
     <!-- lastmod date -->
     
+    <span>
+      Zaktualizowano
+      <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+
+<em class="" data-ts="1692461991" data-df="ll" data-bs-toggle="tooltip" data-bs-placement="bottom">
+  Aug 19, 2023
+</em>
+
+    </span>
+    
 
   
 
@@ -698,8 +808,8 @@
 
 
 <!-- return element -->
-<span class="readtime" data-bs-toggle="tooltip" data-bs-placement="bottom" title="1462 słów">
-  <em>8 min</em> czytania</span>
+<span class="readtime" data-bs-toggle="tooltip" data-bs-placement="bottom" title="1811 słów">
+  <em>10 min</em> czytania</span>
 
     </div>
 
@@ -722,10 +832,10 @@ Jako frontend dewelopera zaproponowano wykorzystanie programu <code class="langu
 Oczywiście ideałem byłoby środowisko pracy natywnej na urządzeniu <em>target</em>, jednak opcja ta jest często niemożliwa do realizacji praktycznej ze względu na jego ograniczone zasoby.
 Okazuje się, że konteneryzacja w połączeniu z emulacją architektury pozwala na stworzenia środowiska budowy aplikacji bardzo zbliżonego tego ideału.
 Przedstawiona dalej konfiguracja bardzo przypomina
-<a href="../../post/2023-08-12-c-cpp-development-for-sbc-in-code/#praca-zdalna-w-tunelu-ssh">pracę zdalną w tunelu SSH</a> <a href="#ref1">[1]</a>,
+<a href="../../posts/C-Cpp-development-for-SBC-in-Code/#praca-zdalna-w-tunelu-ssh">pracę zdalną w tunelu SSH</a> <a href="#ref1">[1]</a>,
 jednak tym razem urządzenie docelowe nie jest w zaangażowane w proces budowania aplikacji.
 Oczywiście jest ono niezbędne do jej debugowania.
-Proces skrośnego debugowania opisano w podrozdziale “<a href="../../post/2023-08-12-c-cpp-development-for-sbc-in-code/#uruchamianie-skro%C5%9Bne">Uruchamianie skrośne</a>” wspomnianego wcześniej opracowania <a href="#ref1">[1]</a>.</p>
+Proces skrośnego debugowania opisano w podrozdziale “<a href="../../posts/C-Cpp-development-for-SBC-in-Code/#uruchamianie-skro%C5%9Bne">Uruchamianie skrośne</a>” wspomnianego wcześniej opracowania <a href="#ref1">[1]</a>.</p>
 
 <p>Realizacja przedstawionego dalej scenariusza wymaga zainstalowania na systemie <em>host</em> <code class="language-plaintext highlighter-rouge">Docker</code>‘a i opcjonalnie <code class="language-plaintext highlighter-rouge">QEMU</code>.
 Pozostałe oprogramowanie zostanie umieszczone w kontenerach i może być łatwo usunięte z systemu jednym poleceniem.</p>
@@ -1075,7 +1185,132 @@ Do pliku ‘<em>.vscode/tasks.json</em>’ wystarczy dodać zadanie postaci</p>
 <span class="me-2">Debugowanie kodu</span><a href="#debugowanie-kodu" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
 </h2>
 
-<p>test</p>
+<p>Natywne debugowanie kodu z wykorzystaniem GUI pracującego na systemie <code class="language-plaintext highlighter-rouge">target</code> jest często awykonalne, głównie ze względu na ograniczony interfejs użytkownika i niezbyt duże zasoby urządzenia.
+Z kolei zdalna praca w konsoli tekstowej z debuggerem <em>gdb</em> jest doznaniem ekstremalnym.</p>
+
+<p>Rozwiązaniem problemu jest podzielenie zadania uruchamiania na dwa oddzielne procesy. Proces <code class="language-plaintext highlighter-rouge">gdbserver</code> pracuje na systemie <code class="language-plaintext highlighter-rouge">target</code><code class="language-plaintext highlighter-rouge"> i odpowiada za krokowe wykonywanie uruchamianej aplikacji.
+Z kolei interfejs użytkownika uruchomiony na systemie </code>host`` komunikuje się z serwerem poprzez sieć lub łącze szeregowe.
+Programem uruchomionym na systemie <code class="language-plaintext highlighter-rouge">host</code> jest <code class="language-plaintext highlighter-rouge">gdb-multiarch</code> (jest to wersja <code class="language-plaintext highlighter-rouge">gdb</code>, która “rozumie” różne architektury). Oba komponenty komunikują się za pomocą protokołu TCP/IP.
+W efekcie struktura komunikacji pomiędzy narzędziami jest następująca: interfejs GUI uruchomiony w systemie <code class="language-plaintext highlighter-rouge">host</code> komunikuje się lokalnie z <code class="language-plaintext highlighter-rouge">gdb-multiarch</code>, który z kolei poprzez sieć komunikuje się z <code class="language-plaintext highlighter-rouge">gdbserver</code> uruchomionym na systemie <code class="language-plaintext highlighter-rouge">target</code>.
+GUI odpowiedzialne za przeprowadzenie sesji uruchamiania musi poinformować <code class="language-plaintext highlighter-rouge">gdb-multiarch</code> o architekturze uruchamianego kodu i adresie serwera oczekującego na połączenie.
+W <code class="language-plaintext highlighter-rouge">Visual Studio Code</code> za konfigurację procesu uruchamiania odpowiedzialny jest plik <code class="language-plaintext highlighter-rouge">*.vscode/launch.json*</code>.
+Dla rozważanego projektu przyjmie on postać</p>
+
+<div class="language-json highlighter-rouge">
+<div class="code-header">
+        <span data-label-text="JSON"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Skopiowano!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+</pre></td>
+<td class="rouge-code"><pre><span class="p">{</span><span class="w">
+  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"configurations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GDB-REMOTE"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cppdbg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="s2">"launch"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${workspaceFolder}/main"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"miDebuggerServerAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"opi.usb:1234"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"miDebuggerPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/usr/bin/gdb-multiarch"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"targetArchitecture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arm64"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nl">"stopAtEntry"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cwd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${workspaceFolder}"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"environment"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nl">"externalConsole"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"MIMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gdb"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"setupCommands"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sets target architecture"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-ex 'set architecture aarch64'"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ignoreFailures"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enable pretty-printing for gdb"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-enable-pretty-printing"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ignoreFailures"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre></td>
+</tr></tbody></table></code></div>
+</div>
+
+<p>Sesję uruchamiania aktywuje się skrótem “<em>F5</em>” lub wybierając ikonę “żuczka” 
+<a href="bug.png" class="popup img-link normal"><img data-src="bug.png" alt="bug" class="lazyload" data-proofer-ignore></a>
+na pasku bocznym.
+Powyższe zadanie realizuje tylko komunikację lokalną z <code class="language-plaintext highlighter-rouge">gdb-multiarch</code>, tak więc każdorazowo <strong>przed rozpoczęciem sesji uruchamiania</strong> należy w terminalu <code class="language-plaintext highlighter-rouge">Visual Studio Code</code> wydać komendę</p>
+
+<div class="language-sh highlighter-rouge">
+<div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Skopiowano!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td>
+<td class="rouge-code"><pre>scp ./main root@opi.usb: <span class="o">&amp;&amp;</span> ssh <span class="nt">-t</span> root@opi.usb <span class="s2">"gdbserver --once localhost:1234 ./main"</span>
+</pre></td>
+</tr></tbody></table></code></div>
+</div>
+
+<p>Zadanie można sobie znacznie ułatwić, dopisując odpowiednie cele do <code class="language-plaintext highlighter-rouge">Makefile</code></p>
+
+<div class="language-make highlighter-rouge">
+<div class="code-header">
+        <span data-label-text="Makefile"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Skopiowano!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td>
+<td class="rouge-code"><pre><span class="nl">debug</span><span class="o">:</span> <span class="nf">$(APPNAME)</span>
+  <span class="nl">scp $(APPNAME) $(REMOTE)</span><span class="o">:</span> <span class="nf">&amp;&amp; ssh -t $(REMOTE) "gdbserver --once localhost:1234 ./$(APPNAME)"</span>
+
+<span class="nl">run</span><span class="o">:</span> <span class="nf">$(APPNAME)</span>
+  <span class="nl">scp $(APPNAME) $(REMOTE)</span><span class="o">:</span> <span class="nf">&amp;&amp; ssh -t $(REMOTE) "./$(APPNAME)"</span>
+</pre></td>
+</tr></tbody></table></code></div>
+</div>
 
 <h2 id="podsumowanie">
 <span class="me-2">Podsumowanie</span><a href="#podsumowanie" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
@@ -1102,7 +1337,7 @@ Co więcej, nie jest konieczna instalacja narzędzi do kompilacji ani na systemi
   <li>
     <p>Zdalny dostęp do konta administratora</p>
 
-    <p>W pliku <em>/etc/ssh/sshd_config</em>’ (<em>target</em>) należy ustawić opcję</p>
+    <p>W pliku <code class="language-plaintext highlighter-rouge">/etc/ssh/sshd_config</code> (<code class="language-plaintext highlighter-rouge">target</code>) należy ustawić opcję</p>
 
     <div class="language-plaintext highlighter-rouge">
 <div class="code-header">
@@ -1120,8 +1355,8 @@ Co więcej, nie jest konieczna instalacja narzędzi do kompilacji ani na systemi
     <p>Logowanie bez konieczności podawania hasła</p>
     <ul>
       <li>
-        <p>Serwer <em>ssh</em> musi zezwalać na uwierzytelnienie za pomocą kluczy publicznych.
-W pliku <em>/etc/ssh/sshd_config</em>’ (<em>target</em>) należy ustawić opcje</p>
+        <p>Serwer <code class="language-plaintext highlighter-rouge">ssh</code> musi zezwalać na uwierzytelnienie za pomocą kluczy publicznych.
+W pliku <code class="language-plaintext highlighter-rouge">/etc/ssh/sshd_config</code> (<code class="language-plaintext highlighter-rouge">target</code>) należy ustawić opcje</p>
 
         <div class="language-plaintext highlighter-rouge">
 <div class="code-header">
@@ -1138,7 +1373,7 @@ AuthorizedKeysFile    .ssh/authorized_keys    .ssh/authorized_keys2
 </tr></tbody></table></code></div>        </div>
       </li>
       <li>
-        <p>Użytkownik systemu <em>host</em> musi mieć wygenerowane osobiste klucze <em>ssh</em>. Generacja komendą</p>
+        <p>Użytkownik systemu <code class="language-plaintext highlighter-rouge">host</code> musi mieć wygenerowane osobiste klucze <code class="language-plaintext highlighter-rouge">ssh</code>. Generacja komendą</p>
 
         <div class="language-plaintext highlighter-rouge">
 <div class="code-header">
@@ -1152,11 +1387,11 @@ AuthorizedKeysFile    .ssh/authorized_keys    .ssh/authorized_keys2
 </pre></td>
 </tr></tbody></table></code></div>        </div>
 
-        <p>Opcją ‘-t’ można wymusić typ klucza, a opcją ‘-b’ jego długość. Wygenerowane klucze, prywatny i publiczny, umieszczone są w podkatalogu ‘.ssh’ katalogu domowego (publiczny ma rozszerzenie ‘pub’).</p>
+        <p>Opcją <code class="language-plaintext highlighter-rouge">-t</code> można wymusić typ klucza, a opcją <code class="language-plaintext highlighter-rouge">-b</code> jego długość. Wygenerowane klucze, prywatny i publiczny, umieszczone są w podkatalogu <code class="language-plaintext highlighter-rouge">.ssh</code> katalogu domowego (publiczny ma rozszerzenie <code class="language-plaintext highlighter-rouge">pub</code>).</p>
       </li>
       <li>
-        <p>Klucz publiczny należy umieścić na systemie <em>target</em> w pliku ‘<em>.ssh/authorized_keys</em>’ na
-koncie docelowym. Wygodne kopiowanie zapewnia komenda (poniżej użyto konta <em>root</em>)</p>
+        <p>Klucz publiczny należy umieścić na systemie <code class="language-plaintext highlighter-rouge">target</code> w pliku <code class="language-plaintext highlighter-rouge">*.ssh/authorized_keys*</code> na
+koncie docelowym. Wygodne kopiowanie zapewnia komenda (poniżej użyto konta <code class="language-plaintext highlighter-rouge">root</code>)</p>
 
         <div class="language-sh highlighter-rouge">
 <div class="code-header">
@@ -1178,7 +1413,7 @@ koncie docelowym. Wygodne kopiowanie zapewnia komenda (poniżej użyto konta <em
 <span class="me-2">Pobranie głównego systemu plików z działającego urządzenia</span><a href="#pobranie-g%C5%82%C3%B3wnego-systemu-plik%C3%B3w-z-dzia%C5%82aj%C4%85cego-urz%C4%85dzenia" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
 </h3>
 
-<p>Jeżeli główny system plików archiwizujemy z działającego urządzenia <em>target</em>, to przed operacją archiwizacji katalog główny należy zamontować w innym miejscu przy użyciu ‘mount –bind’ i dopiero w nim wydać komendę archiwizacji. Wynik archiwizacji najlepiej od razu pobrać na system <em>host</em></p>
+<p>Jeżeli główny system plików archiwizujemy z działającego urządzenia <code class="language-plaintext highlighter-rouge">target</code>, to przed operacją archiwizacji katalog główny należy zamontować w innym miejscu przy użyciu <code class="language-plaintext highlighter-rouge">mount --bind</code> i dopiero w nim wydać komendę archiwizacji. Wynik archiwizacji najlepiej od razu pobrać na system <code class="language-plaintext highlighter-rouge">host</code></p>
 
 <div class="language-sh highlighter-rouge">
 <div class="code-header">
@@ -1193,7 +1428,7 @@ koncie docelowym. Wygodne kopiowanie zapewnia komenda (poniżej użyto konta <em
 </tr></tbody></table></code></div>
 </div>
 
-<p>W powyższej komendzie <em>opi.usb</em> to nazwa sieciowa urządzenia <em>target</em> i może być zastąpiona przez jego numer IP.</p>
+<p>W powyższej komendzie <code class="language-plaintext highlighter-rouge">opi.usb</code> to nazwa sieciowa urządzenia <code class="language-plaintext highlighter-rouge">target</code> i może być zastąpiona przez jego numer IP.</p>
 
 </div>
 
@@ -1301,6 +1536,28 @@ koncie docelowym. Wygodne kopiowanie zapewnia komenda (poniżej użyto konta <em
 
 
 
+
+  <div id="access-lastmod" class="post">
+    <div class="panel-heading">Ostatnio zmienione</div>
+    <ul class="post-content list-unstyled ps-0 pb-1 ms-1 mt-2">
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/how-to-debug-esp32-with-esp-prog/">Jak uruchamiać programy dla ESP32 korzystając z ESP-Prog</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/emulated-building-for-SBC/">Budowanie aplikacji dla SBC w środowisku emulowanym</a>
+        </li>
+      
+    </ul>
+  </div>
+  <!-- #access-lastmod -->
 
 
       <!-- The trending tags list -->

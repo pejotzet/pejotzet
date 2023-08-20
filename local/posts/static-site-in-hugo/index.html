@@ -513,6 +513,14 @@
 
       
     
+      
+
+      
+      
+      
+
+      
+    
 
     <!-- take out classes -->
     
@@ -1020,7 +1028,7 @@ Po wspomnianych modyfikacjach plik <code class="language-plaintext highlighter-r
 
 <p><code class="language-plaintext highlighter-rouge">Code</code> “zauważy”, że istnieje podkatalog <code class="language-plaintext highlighter-rouge">.devcontainer/</code> i zapyta, czy otworzyć projekt w kontenerze deweloperskim.
 Należy się na to zgodzić.
-Przełączenie pomiędzy pracą lokalną a kontenerem (traktowanym przez <code class="language-plaintext highlighter-rouge">Code</code> jak zdalna maszyna) aktywuje się za pomocą przycisku znajdującego się w lewym dolnym rogu interfejsu <code class="language-plaintext highlighter-rouge">Code</code> <a href="code-remote-button.png" class="popup img-link "><img data-src="code-remote-button.png" alt="code-remote-button" class="lazyload" data-proofer-ignore></a>.</p>
+Przełączenie pomiędzy pracą lokalną a kontenerem (traktowanym przez <code class="language-plaintext highlighter-rouge">Code</code> jak zdalna maszyna) aktywuje się za pomocą przycisku znajdującego się w lewym dolnym rogu interfejsu <code class="language-plaintext highlighter-rouge">Code</code> <a href="code-remote-button.png" class="popup img-link normal"><img data-src="code-remote-button.png" alt="code-remote-button" class="lazyload" data-proofer-ignore></a>.</p>
 
 <h3 id="przygotowanie-szablonu-serwisu">
 <span class="me-2">Przygotowanie szablonu serwisu</span><a href="#przygotowanie-szablonu-serwisu" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
@@ -1289,14 +1297,14 @@ Do publikacji serwisu zostanie wykorzystany automatyczne działanie, przy czym i
 Można ją utworzyć w serwisie <code class="language-plaintext highlighter-rouge">GitHub</code> wybierając na stronie głównej repozytorium przycisk <code class="language-plaintext highlighter-rouge">Branches</code> i dodać wspomnianą gałąź.</p>
 
 <video controls="">
-    <source src="github-add-branch.webm" type="video/webm"></source>
+    <source src="../../assets/posts/static-site-in-hugo/github-add-branch.webm" type="video/webm"></source>
     Your browser does not support the video tag.
   </video>
 
 <p>Dopiero teraz w menu <code class="language-plaintext highlighter-rouge">Pages</code> jako metodę publikacji należy wybrać <code class="language-plaintext highlighter-rouge">GitHub Actions</code> przy użyciu akcji <code class="language-plaintext highlighter-rouge">Hugo</code>.</p>
 
 <video controls="">
-    <source src="github-select-action.webm" type="video/webm"></source>
+    <source src="../../assets/posts/static-site-in-hugo/github-select-action.webm" type="video/webm"></source>
     Your browser does not support the video tag.
   </video>
 
@@ -1449,7 +1457,7 @@ Teraz utworzoną gałąź publikujemy (<code class="language-plaintext highlight
 Synchronizacja z repozytorium <code class="language-plaintext highlighter-rouge">GitHub</code> jest “bezkosztowa” gdyż zgodnie z konfiguracją tylko zmiany w gałęzi <code class="language-plaintext highlighter-rouge">main</code> włączają budowę serwisu.</p>
 
 <video controls="">
-  <source src="code-add-branch.webm" type="video/webm"></source>
+  <source src="../../assets/posts/static-site-in-hugo/code-add-branch.webm" type="video/webm"></source>
   Your browser does not support the video tag.
 </video>
 
@@ -1458,7 +1466,7 @@ Wtedy synchronizacja z serwisem <code class="language-plaintext highlighter-roug
 Po wykonaniu synchronizacji aktywną gałąź w lokalnym repozytorium znowu należy przełączyć na <code class="language-plaintext highlighter-rouge">devel</code>.</p>
 
 <video controls="">
-  <source src="code-merge-branch.webm" type="video/webm"></source>
+  <source src="../../assets/posts/static-site-in-hugo/code-merge-branch.webm" type="video/webm"></source>
   Your browser does not support the video tag.
 </video>
 
@@ -1519,10 +1527,10 @@ generator <code class="language-plaintext highlighter-rouge">Hugo</code> umieszc
 Można ją utworzyć w serwisie <code class="language-plaintext highlighter-rouge">GitHub</code> wybierając na stronie głównej repozytorium przycisk <code class="language-plaintext highlighter-rouge">Branches</code>.
 Po wybraniu ikony synchronizacji wybieramy <code class="language-plaintext highlighter-rouge">...</code> przy nazwie repozytorium , a następnie <code class="language-plaintext highlighter-rouge">Branch</code>-&gt; <code class="language-plaintext highlighter-rouge">Create Branch</code> i wpisujemy <code class="language-plaintext highlighter-rouge">gh-pages</code>.</p>
 
-<video controls="">
-    <source src="github-add-branch.webm" type="video/webm"></source>
-    Your browser does not support the video tag.
-  </video>
+<video controls="" width="800">
+  <source src="../../assets/posts/static-site-in-hugo/github-add-branch.webm" type="video/webm"></source>
+  Your browser does not support the video tag.
+</video>
 
 <p>Teraz w nowym repozytorium wystarczy aktywować mechanizm <code class="language-plaintext highlighter-rouge">GitHub Pages</code>.</p>
 
@@ -2075,6 +2083,28 @@ Potrzeby powyżej limitów określonych przez dostawcę usługi wymagają wniesi
 
 
 
+
+  <div id="access-lastmod" class="post">
+    <div class="panel-heading">Ostatnio zmienione</div>
+    <ul class="post-content list-unstyled ps-0 pb-1 ms-1 mt-2">
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/how-to-debug-esp32-with-esp-prog/">Jak uruchamiać programy dla ESP32 korzystając z ESP-Prog</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/emulated-building-for-SBC/">Budowanie aplikacji dla SBC w środowisku emulowanym</a>
+        </li>
+      
+    </ul>
+  </div>
+  <!-- #access-lastmod -->
 
 
       <!-- The trending tags list -->

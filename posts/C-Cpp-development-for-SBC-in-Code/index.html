@@ -30,7 +30,7 @@
 <meta name="twitter:card" content="summary">
 <meta property="twitter:title" content="Jak kompilować i debugować aplikacje w C/C++ na komputery jednopłytkowe korzystając z VS Code">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Piotr Zawadzki"},"dateModified":"2023-08-12T15:13:20+02:00","datePublished":"2023-08-12T15:13:20+02:00","description":"Komputery jednopłytkowe (ang. SBC — Single Board Computer) to uniwersalne urządzenia mikroprocesorowe pracujące pod kontrolą systemu operacyjnego. Zazwyczaj systemem tym jest Linux. Architektury komputerów jednopłytkowych mogą istotnie się różnić od architektur stosowanych dla komputerów osobistych. W rezultacie przygotowanie aplikacji w postaci binarnej na urządzenie docelowe (target) na komputerze osobistym (host) wymaga wielu, często dość skomplikowanych, zabiegów. Uwaga niniejszego opracowania skupiona jest na realizacji różnych scenariuszy pracy z wykorzystaniem edytora VS Code i eliminujących konieczność instalacji i konfiguracji środowiska graficznego na SBC.","headline":"Jak kompilować i debugować aplikacje w C/C++ na komputery jednopłytkowe korzystając z VS Code","mainEntityOfPage":{"@type":"WebPage","@id":"https://pejotzet.github.io/pejotzet/posts/C-Cpp-development-for-SBC-in-Code/"},"url":"https://pejotzet.github.io/pejotzet/posts/C-Cpp-development-for-SBC-in-Code/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Piotr Zawadzki"},"dateModified":"2023-08-20T08:44:54+02:00","datePublished":"2023-08-12T15:13:20+02:00","description":"Komputery jednopłytkowe (ang. SBC — Single Board Computer) to uniwersalne urządzenia mikroprocesorowe pracujące pod kontrolą systemu operacyjnego. Zazwyczaj systemem tym jest Linux. Architektury komputerów jednopłytkowych mogą istotnie się różnić od architektur stosowanych dla komputerów osobistych. W rezultacie przygotowanie aplikacji w postaci binarnej na urządzenie docelowe (target) na komputerze osobistym (host) wymaga wielu, często dość skomplikowanych, zabiegów. Uwaga niniejszego opracowania skupiona jest na realizacji różnych scenariuszy pracy z wykorzystaniem edytora VS Code i eliminujących konieczność instalacji i konfiguracji środowiska graficznego na SBC.","headline":"Jak kompilować i debugować aplikacje w C/C++ na komputery jednopłytkowe korzystając z VS Code","mainEntityOfPage":{"@type":"WebPage","@id":"https://pejotzet.github.io/pejotzet/posts/C-Cpp-development-for-SBC-in-Code/"},"url":"https://pejotzet.github.io/pejotzet/posts/C-Cpp-development-for-SBC-in-Code/"}</script>
 <!-- End Jekyll SEO tag -->
 
   
@@ -920,6 +920,23 @@
 
     <!-- lastmod date -->
     
+    <span>
+      Zaktualizowano
+      <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+
+<em class="" data-ts="1692513894" data-df="ll" data-bs-toggle="tooltip" data-bs-placement="bottom">
+  Aug 20, 2023
+</em>
+
+    </span>
+    
 
   
 
@@ -958,7 +975,7 @@
 
 
 <!-- return element -->
-<span class="readtime" data-bs-toggle="tooltip" data-bs-placement="bottom" title="3991 słów">
+<span class="readtime" data-bs-toggle="tooltip" data-bs-placement="bottom" title="4113 słów">
   <em>22 min</em> czytania</span>
 
     </div>
@@ -968,10 +985,10 @@
 </div> <!-- .post-meta -->
 
 <div class="post-content">
-  <p>Komputery jednopłytkowe (ang. <code class="language-plaintext highlighter-rouge">SBC</code> — <em>Single Board Computer</em>) to uniwersalne urządzenia mikroprocesorowe pracujące pod kontrolą systemu operacyjnego.
+  <p>Komputery jednopłytkowe (ang. <code class="language-plaintext highlighter-rouge">SBC</code> — <code class="language-plaintext highlighter-rouge">Single Board Computer</code>) to uniwersalne urządzenia mikroprocesorowe pracujące pod kontrolą systemu operacyjnego.
 Zazwyczaj systemem tym jest Linux.
 Architektury komputerów jednopłytkowych mogą istotnie się różnić od architektur stosowanych dla komputerów osobistych.
-W rezultacie przygotowanie aplikacji w postaci binarnej na urządzenie docelowe (<em>target</em>) na komputerze osobistym (<em>host</em>) wymaga wielu, często dość skomplikowanych, zabiegów.
+W rezultacie przygotowanie aplikacji w postaci binarnej na urządzenie docelowe (<code class="language-plaintext highlighter-rouge">target</code>) na komputerze osobistym (<code class="language-plaintext highlighter-rouge">host</code>) wymaga wielu, często dość skomplikowanych, zabiegów.
 Uwaga niniejszego opracowania skupiona jest na realizacji różnych scenariuszy pracy z wykorzystaniem edytora <code class="language-plaintext highlighter-rouge">VS Code</code> i eliminujących konieczność instalacji i konfiguracji środowiska graficznego na <code class="language-plaintext highlighter-rouge">SBC</code>.</p>
 
 <!--more-->
@@ -984,11 +1001,11 @@ Jądro systemu operacyjnego zainstalowanego na takim urządzeniu zapewnia abstra
 Scenariusz taki jest możliwy, gdy <code class="language-plaintext highlighter-rouge">SBC</code> ma zasoby porównywalne z komputerami <code class="language-plaintext highlighter-rouge">PC</code>.
 W zdecydowanej większości przypadków tak nie jest.</p>
 
-<p>We wszystkich opisanych dalej scenariuszach <strong>jedynym</strong> interfejsem programisty będzie
-<a href="https://code.visualstudio.com/"><em>Visual Studio Code</em></a> – doceniony przez programistów i wysoce konfigurowalny edytor.
-Mechanizm rozszerzeń w edytorze umożliwia jego uzupełnienie o funkcje budowania i uruchamiania aplikacji co <em>de facto</em> przekształca go w zintegrowane środowisko pracy. 
+<p>We wszystkich opisanych dalej scenariuszach <code class="language-plaintext highlighter-rouge">jedynym</code> interfejsem programisty będzie
+<a href="https://code.visualstudio.com/"><code class="language-plaintext highlighter-rouge">Visual Studio Code</code></a> – doceniony przez programistów i wysoce konfigurowalny edytor.
+Mechanizm rozszerzeń w edytorze umożliwia jego uzupełnienie o funkcje budowania i uruchamiania aplikacji co <code class="language-plaintext highlighter-rouge">de facto</code> przekształca go w zintegrowane środowisko pracy. 
 <code class="language-plaintext highlighter-rouge">VS Code</code> jest dostępny nieodpłatnie na wszystkie popularne systemy operacyjne. 
-Pracę z projektami C/C++ znacznie ułatwia <code class="language-plaintext highlighter-rouge">*C/C++ Extension Pack*</code>. 
+Pracę z projektami C/C++ znacznie ułatwia <code class="language-plaintext highlighter-rouge">C/C++ Extension Pack</code>. 
 Dalej przyjęto, że rozszerzenie to jest zainstalowane.
 Rozważane są scenariusze pracy w których kod aplikacji jest budowany na urządzeniu docelowym lub komputerze <code class="language-plaintext highlighter-rouge">PC</code>.</p>
 
@@ -996,7 +1013,7 @@ Rozważane są scenariusze pracy w których kod aplikacji jest budowany na urzą
 <span class="me-2">1. Kompilacja natywna</span><a href="#1-kompilacja-natywna" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
 </h2>
 
-<p>Opisane w tym punkcie scenariusze wymagają instalacji w systemie <em>target</em> narzędzi umożliwiających budowanie aplikacji, np.</p>
+<p>Opisane w tym punkcie scenariusze wymagają instalacji w systemie <code class="language-plaintext highlighter-rouge">target</code> narzędzi umożliwiających budowanie aplikacji, np.</p>
 
 <div class="language-sh highlighter-rouge">
 <div class="code-header">
@@ -1016,34 +1033,34 @@ apt <span class="nb">install</span> <span class="nt">-y</span> libgpiod-dev
 <p><code class="language-plaintext highlighter-rouge">VS Code</code> jest wykorzystywane jedynie do zapewnienia programiście wygodnego interfejsu graficznego.</p>
 
 <h3 id="11-praca-zdalna-z-wykorzystaniem-code-server">
-<span class="me-2">1.1 Praca zdalna z wykorzystaniem <em>Code Server</em></span><a href="#11-praca-zdalna-z-wykorzystaniem-code-server" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+<span class="me-2">1.1 Praca zdalna z wykorzystaniem <code class="language-plaintext highlighter-rouge">Code Server</code></span><a href="#11-praca-zdalna-z-wykorzystaniem-code-server" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
 </h3>
 
-<p>Instalacja w <em>Visual Studio Code</em> rozszerzenia <em>Remote SSH</em> umożliwia pracę zdalną na dowolnym koncie <em>SSH</em>, tak jak gdyby był to komputer lokalny. W procesie automatycznej konfiguracji zdalnego konta na systemie <em>target</em> jest instalowany i uruchamiany <a href="https://code.visualstudio.com/docs/remote/vscode-server"><em>Code Server</em></a>.
+<p>Instalacja w <code class="language-plaintext highlighter-rouge">Visual Studio Code</code> rozszerzenia <code class="language-plaintext highlighter-rouge">Remote SSH</code> umożliwia pracę zdalną na dowolnym koncie <code class="language-plaintext highlighter-rouge">SSH</code>, tak jak gdyby był to komputer lokalny. W procesie automatycznej konfiguracji zdalnego konta na systemie <code class="language-plaintext highlighter-rouge">target</code> jest instalowany i uruchamiany <a href="https://code.visualstudio.com/docs/remote/vscode-server"><code class="language-plaintext highlighter-rouge">Code Server</code></a>.
 Otwarcie zdalnej sesji przebiega następująco:</p>
 
 <ul>
   <li>
-    <p>po uruchomieniu <em>Visual Studio Code</em> wystarczy wybrać zielony przycisk “<a href="/pejotzetconnect-button.png" class="popup img-link "><img data-src="/pejotzetconnect-button.png" alt="connect-button" class="lazyload" data-proofer-ignore></a>” w lewym dolnym rogu ekranu</p>
+    <p>po uruchomieniu <code class="language-plaintext highlighter-rouge">Visual Studio Code</code> wystarczy wybrać zielony przycisk “<a href="/pejotzetconnect-button.png" class="popup img-link "><img data-src="/pejotzetconnect-button.png" alt="connect-button" class="lazyload" data-proofer-ignore></a>” w lewym dolnym rogu ekranu</p>
   </li>
   <li>
-    <p>z palety komend wybrać “<em>Connect to Host</em>”,</p>
+    <p>z palety komend wybrać “<code class="language-plaintext highlighter-rouge">Connect to Host</code>”,</p>
   </li>
   <li>
-    <p>w polu adresu wpisać <code class="language-plaintext highlighter-rouge">root@opi.usb</code> (“root” można zamienić na dowolne inne konto, “opi.usb” jest nazwą sieciową systemu <em>target</em> i może być zamieniona na stosowny numer IP),</p>
+    <p>w polu adresu wpisać <code class="language-plaintext highlighter-rouge">root@opi.usb</code> (“root” można zamienić na dowolne inne konto, <code class="language-plaintext highlighter-rouge">opi.usb"</code> jest nazwą sieciową systemu <code class="language-plaintext highlighter-rouge">target</code> i może być zamieniona na stosowny numer IP),</p>
   </li>
 </ul>
 
-<p>Rozszerzenie <em>Remote SSH</em> automatycznie zainstaluje na zdalnym koncie oprogramowanie <em>Code Server</em> (w katalogu ‘.vscode’ na zdalnym koncie) umożliwiające egzekucję i odbieranie wyników komend wydawanych w tunelu SSH.
-Praca w takiej konfiguracji jest bardzo wygodna i w zasadzie niczym nie różni się od pracy lokalnej. Jedyna różnica polega na tym, że źródła aplikacji i narzędzia ich kompilacji muszą być obecne na systemie <em>target</em>. Na systemie <em>host</em> nie trzeba instalować nić oprócz <code class="language-plaintext highlighter-rouge">Visual Studio Code</code>.
+<p>Rozszerzenie <code class="language-plaintext highlighter-rouge">Remote SSH</code> automatycznie zainstaluje na zdalnym koncie oprogramowanie <code class="language-plaintext highlighter-rouge">Code Server</code> (w katalogu ‘.vscode’ na zdalnym koncie) umożliwiające egzekucję i odbieranie wyników komend wydawanych w tunelu SSH.
+Praca w takiej konfiguracji jest bardzo wygodna i w zasadzie niczym nie różni się od pracy lokalnej. Jedyna różnica polega na tym, że źródła aplikacji i narzędzia ich kompilacji muszą być obecne na systemie <code class="language-plaintext highlighter-rouge">target</code>. Na systemie <code class="language-plaintext highlighter-rouge">host</code> nie trzeba instalować nić oprócz <code class="language-plaintext highlighter-rouge">Visual Studio Code</code>.
 Niestety, przedstawione rozwiązanie ma dwie (poważne) wady:</p>
 
 <ul>
   <li>
-    <p><em>code-server</em> wspiera tylko architektury 64-bitowe: <em>amd64</em> i <em>arm64</em>, co na wyklucza zastosowanie tego podejścia na wielu dostępnych na rynku <code class="language-plaintext highlighter-rouge">SBC</code>,</p>
+    <p><code class="language-plaintext highlighter-rouge">code-server</code> wspiera tylko architektury 64-bitowe: <code class="language-plaintext highlighter-rouge">amd64</code> i <code class="language-plaintext highlighter-rouge">arm64</code>, co na wyklucza zastosowanie tego podejścia na wielu dostępnych na rynku <code class="language-plaintext highlighter-rouge">SBC</code>,</p>
   </li>
   <li>
-    <p>system <em>target</em> powinien być wyposażony w 1GB RAM i dwurdzeniowy CPU.</p>
+    <p>system <code class="language-plaintext highlighter-rouge">target</code> powinien być wyposażony w 1GB RAM i dwurdzeniowy CPU.</p>
   </li>
 </ul>
 
@@ -1051,9 +1068,9 @@ Niestety, przedstawione rozwiązanie ma dwie (poważne) wady:</p>
 <span class="me-2">1.2 Praca zdalna w tunelu SSH</span><a href="#12-praca-zdalna-w-tunelu-ssh" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
 </h3>
 
-<p>Poprzednia metoda nie jest uniwersalna ze względu na wymagania stawiane przez <em>Code Server</em>.
+<p>Poprzednia metoda nie jest uniwersalna ze względu na wymagania stawiane przez <code class="language-plaintext highlighter-rouge">Code Server</code>.
 Element ten można wyeliminować z poprzedniego schematu.
-Tym razem pliki źródłowe są edytowane na systemie <em>host</em> i przed kompilacją kopiowane na system <em>target</em>, gdzie są kompilowane za pomocą natywnych narzędzi.
+Tym razem pliki źródłowe są edytowane na systemie <code class="language-plaintext highlighter-rouge">host</code> i przed kompilacją kopiowane na system <code class="language-plaintext highlighter-rouge">target</code>, gdzie są kompilowane za pomocą natywnych narzędzi.
 W toku dalszego wywodu zostanie przyjęto następującą strukturę podkatalogów w katalogu projektu</p>
 
 <div class="language-sh highlighter-rouge">
@@ -1079,67 +1096,128 @@ Makefile
 </tr></tbody></table></code></div>
 </div>
 
-<p>Powyższy projekt można zbudować natywnie, korzystając z następującego ‘<em>Makefile</em>’</p>
+<p>Powyższy projekt można zbudować natywnie, korzystając z następującego ‘<code class="language-plaintext highlighter-rouge">Makefile</code>’</p>
 
-<pre><code class="language-Makefile"># Compiler settings - Can be customized.
-CC = gcc
-CXX = g++
-CPPFLAGS =
-CFLAGS = -std=c11 -g -Wall -fdiagnostics-color=always
-CXXFLAGS = -std=c++11 -g -Wall -fdiagnostics-color=always
-LDFLAGS = -lpthread -lgpiod
+<div class="language-make highlighter-rouge">
+<div class="code-header">
+        <span data-label-text="Makefile"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Skopiowano!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+</pre></td>
+<td class="rouge-code"><pre><span class="c"># Compiler settings - Can be customized.
+</span><span class="nv">CC</span> <span class="o">=</span> gcc
+<span class="nv">CXX</span> <span class="o">=</span> g++
+<span class="nv">CPPFLAGS</span> <span class="o">=</span>
+<span class="nv">CFLAGS</span> <span class="o">=</span> <span class="nt">-std</span><span class="o">=</span>c11 <span class="nt">-g</span> <span class="nt">-Wall</span> <span class="nt">-fdiagnostics-color</span><span class="o">=</span>always
+<span class="nv">CXXFLAGS</span> <span class="o">=</span> <span class="nt">-std</span><span class="o">=</span>c++11 <span class="nt">-g</span> <span class="nt">-Wall</span> <span class="nt">-fdiagnostics-color</span><span class="o">=</span>always
+<span class="nv">LDFLAGS</span> <span class="o">=</span> <span class="nt">-lpthread</span> <span class="nt">-lgpiod</span>
 
-# Makefile settings - Can be customized.
-APPNAME = main
-EXT = .c
-SRCDIR = src
-OBJDIR = obj
-REMOTE = root@opi.usb
-REMOTEPWD = /root/RemotePowerButton
+<span class="c"># Makefile settings - Can be customized.
+</span><span class="nv">APPNAME</span> <span class="o">=</span> main
+<span class="nv">EXT</span> <span class="o">=</span> .c
+<span class="nv">SRCDIR</span> <span class="o">=</span> src
+<span class="nv">OBJDIR</span> <span class="o">=</span> obj
+<span class="nv">REMOTE</span> <span class="o">=</span> root@opi.usb
+<span class="nv">REMOTEPWD</span> <span class="o">=</span> /root/RemotePowerButton
 
-SRC = $(wildcard $(SRCDIR)/*$(EXT))
-OBJ = $(SRC:$(SRCDIR)/%$(EXT)=$(OBJDIR)/%.o)
-DEP = $(OBJ:$(OBJDIR)/%.o=%.d)
+<span class="nv">SRC</span> <span class="o">=</span> <span class="p">$(</span>wildcard <span class="p">$(</span>SRCDIR<span class="p">)</span>/<span class="k">*</span><span class="p">$(</span>EXT<span class="p">))</span>
+<span class="nv">OBJ</span> <span class="o">=</span> <span class="p">$(</span>SRC:<span class="p">$(</span>SRCDIR<span class="p">)</span>/%<span class="p">$(</span>EXT<span class="p">)</span><span class="o">=</span><span class="p">$(</span>OBJDIR<span class="p">)</span>/%.o<span class="p">)</span>
+<span class="nv">DEP</span> <span class="o">=</span> <span class="p">$(</span>OBJ:<span class="p">$(</span>OBJDIR<span class="p">)</span>/%.o<span class="o">=</span>%.d<span class="p">)</span>
 
-RM = rm
+<span class="nv">RM</span> <span class="o">=</span> <span class="nb">rm</span>
 
-all: $(APPNAME)
+<span class="nl">all</span><span class="o">:</span> <span class="nf">$(APPNAME)</span>
 
-# Copy sources to target
-copysrc:
-  scp -p -r ./src/ ./obj/ ./Makefile $(REMOTE):$(REMOTEPWD)
+<span class="c"># Copy sources to target
+</span><span class="nl">copysrc</span><span class="o">:</span>
+  <span class="nl">scp -p -r ./src/ ./obj/ ./Makefile $(REMOTE)</span><span class="o">:</span><span class="nf">$(REMOTEPWD)</span>
 
-# Builds the app
-$(APPNAME): $(OBJ)
-  $(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+<span class="c"># Builds the app
+</span><span class="nl">$(APPNAME)</span><span class="o">:</span> <span class="nf">$(OBJ)</span>
+  <span class="err">$(CC)</span> <span class="err">$(CFLAGS)</span> <span class="err">-o</span> <span class="err">$@</span> <span class="err">$^</span> <span class="err">$(LDFLAGS)</span>
 
-# Creates the dependecy rules
-%.d: $(SRCDIR)/%$(EXT)
-  @$(CPP) $(CFLAGS) $(CPPFLAGS) $&lt; -MM -MT $(@:%.d=$(OBJDIR)/%.o) &gt;$@
+<span class="c"># Creates the dependecy rules
+</span><span class="nl">%.d</span><span class="o">:</span> <span class="nf">$(SRCDIR)/%$(EXT)</span>
+  <span class="nl">@$(CPP) $(CFLAGS) $(CPPFLAGS) $&lt; -MM -MT $(@</span><span class="o">:</span><span class="nf">%.d=$(OBJDIR)/%.o) &gt;$@</span>
 
-# Includes all .h files
--include $(DEP)
+<span class="c"># Includes all .h files
+</span><span class="k">-include</span><span class="sx"> $(DEP)</span>
 
-# Building rule for .o files and its .c/.cpp in combination with all .h
-$(OBJDIR)/%.o: $(SRCDIR)/%$(EXT)
-  $(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $&lt;
+<span class="c"># Building rule for .o files and its .c/.cpp in combination with all .h
+</span><span class="nl">$(OBJDIR)/%.o</span><span class="o">:</span> <span class="nf">$(SRCDIR)/%$(EXT)</span>
+  <span class="err">$(CC)</span> <span class="err">$(CFLAGS)</span> <span class="err">$(CPPFLAGS)</span> <span class="err">-o</span> <span class="err">$@</span> <span class="err">-c</span> <span class="err">$&lt;</span>
 
-# Cleans complete project
-.PHONY: clean
-clean:
-  -$(RM) $(OBJ) $(DEP) $(APPNAME)
+<span class="c"># Cleans complete project
+</span><span class="nl">.PHONY</span><span class="o">:</span> <span class="nf">clean</span>
+<span class="nl">clean</span><span class="o">:</span>
+  <span class="err">-$(RM)</span> <span class="err">$(OBJ)</span> <span class="err">$(DEP)</span> <span class="err">$(APPNAME)</span>
 
-# Cleans only all files with the extension .d
-.PHONY: cleandep
-cleandep:
-  -$(RM) $(DEP)
-</code></pre>
+<span class="c"># Cleans only all files with the extension .d
+</span><span class="nl">.PHONY</span><span class="o">:</span> <span class="nf">cleandep</span>
+<span class="nl">cleandep</span><span class="o">:</span>
+  <span class="err">-$(RM)</span> <span class="err">$(DEP)</span>
+</pre></td>
+</tr></tbody></table></code></div>
+</div>
 
-<p>W powyższym pliku cel ‘<em>copysrc</em>’ odpowiada za skopiowanie na system <em>target</em> struktury katalogów i plików niezbędnych do zbudowania aplikacji.</p>
+<p>W powyższym pliku cel ‘<code class="language-plaintext highlighter-rouge">copysrc</code>’ odpowiada za skopiowanie na system <code class="language-plaintext highlighter-rouge">target</code> struktury katalogów i plików niezbędnych do zbudowania aplikacji.</p>
 
-<p>Plikiem konfiguracyjnym mówiącym <em>Visual Studio Code</em> jak należy dany projekt budować, jest plik ‘<em>.vscode/tasks.json</em>’.
-Każdy projekt może mieć kilka zadań, do których odwołujemy się przez nazwę nadaną w polu ‘<em>label</em>’. Zadania budowania konfiguruje się w menu ‘<em>Terminal</em>’.
-Konfiguracja zadania, które kopiuje pliki źródłowe na system <em>target</em>, a następnie zdalnie wykonuje na nim polecenie ‘<em>make</em>’ wygląda następująco (plik ‘<em>.vscode/tasks.json</em>’):</p>
+<p>Plikiem konfiguracyjnym mówiącym <code class="language-plaintext highlighter-rouge">Visual Studio Code</code> jak należy dany projekt budować, jest plik ‘<code class="language-plaintext highlighter-rouge">.vscode/tasks.json</code>’.
+Każdy projekt może mieć kilka zadań, do których odwołujemy się przez nazwę nadaną w polu ‘<code class="language-plaintext highlighter-rouge">label</code>’. Zadania budowania konfiguruje się w menu ‘<code class="language-plaintext highlighter-rouge">Terminal</code>’.
+Konfiguracja zadania, które kopiuje pliki źródłowe na system <code class="language-plaintext highlighter-rouge">target</code>, a następnie zdalnie wykonuje na nim polecenie ‘<code class="language-plaintext highlighter-rouge">make</code>’ wygląda następująco (plik ‘<code class="language-plaintext highlighter-rouge">.vscode/tasks.json</code>’):</p>
 
 <div class="language-json highlighter-rouge">
 <div class="code-header">
@@ -1194,20 +1272,20 @@ Konfiguracja zadania, które kopiuje pliki źródłowe na system <em>target</em>
 </tr></tbody></table></code></div>
 </div>
 
-<p>Przyjęto, że zdalnym katalogiem projektu jest ‘<em>/root/RemotePowerButton</em>’. Procedurę budowania aktywuje się skrótem klawiszowym ‘<em>Ctrl+Shift+B</em>’.</p>
+<p>Przyjęto, że zdalnym katalogiem projektu jest ‘<code class="language-plaintext highlighter-rouge">/root/RemotePowerButton</code>’. Procedurę budowania aktywuje się skrótem klawiszowym ‘<code class="language-plaintext highlighter-rouge">Ctrl+Shift+B</code>’.</p>
 
-<p>Edytor <em>Visual Studio Code</em> jest wyposażony w mechanizm <a href="https://code.visualstudio.com/docs/editor/intellisense"><em>IntelliSense</em></a> bardzo ułatwiający pisanie kodu źródłowego poprzez zastosowanie zaawansowanego mechanizmu podpowiedzi nt. zdefiniowanych zmiennych, dostępnych funkcji, akceptowanych przez nie argumentów itp.
-<em>IntelliSense</em> czerpie swoją wiedzę z analizy treści plików nagłówkowych.
-W przedstawionej tutaj konfiguracji problem polega na tym, że <em>IntelliSense</em> korzysta z plików nagłówkowych w systemie <em>host</em>, które mogą być zupełnie odmienne od odpowiednich plików w systemie <em>target</em>.
-Aby tę niefortunny stan rzeczy naprawić, należy pliki nagłówkowe z systemu <em>target</em> udostępnić <em>IntelliSense</em>.
+<p>Edytor <code class="language-plaintext highlighter-rouge">Visual Studio Code</code> jest wyposażony w mechanizm <a href="https://code.visualstudio.com/docs/editor/intellisense"><code class="language-plaintext highlighter-rouge">IntelliSense</code></a> bardzo ułatwiający pisanie kodu źródłowego poprzez zastosowanie zaawansowanego mechanizmu podpowiedzi nt. zdefiniowanych zmiennych, dostępnych funkcji, akceptowanych przez nie argumentów itp.
+<code class="language-plaintext highlighter-rouge">IntelliSense</code> czerpie swoją wiedzę z analizy treści plików nagłówkowych.
+W przedstawionej tutaj konfiguracji problem polega na tym, że <code class="language-plaintext highlighter-rouge">IntelliSense</code> korzysta z plików nagłówkowych w systemie <code class="language-plaintext highlighter-rouge">host</code>, które mogą być zupełnie odmienne od odpowiednich plików w systemie <code class="language-plaintext highlighter-rouge">target</code>.
+Aby tę niefortunny stan rzeczy naprawić, należy pliki nagłówkowe z systemu <code class="language-plaintext highlighter-rouge">target</code> udostępnić <code class="language-plaintext highlighter-rouge">IntelliSense</code>.
 Procedura jest dwuetapowa:</p>
 
 <ol>
   <li>
-    <p>pliki nagłówkowe z systemu <em>target</em>, muszą być widoczne w systemie <em>host</em>,</p>
+    <p>pliki nagłówkowe z systemu <code class="language-plaintext highlighter-rouge">target</code>, muszą być widoczne w systemie <code class="language-plaintext highlighter-rouge">host</code>,</p>
   </li>
   <li>
-    <p><em>IntelliSense</em> musi być poinformowane, gdzie się te pliki znajdują.</p>
+    <p><code class="language-plaintext highlighter-rouge">IntelliSense</code> musi być poinformowane, gdzie się te pliki znajdują.</p>
   </li>
 </ol>
 
@@ -1215,7 +1293,7 @@ Procedura jest dwuetapowa:</p>
 
 <ul>
   <li>
-    <p>metodą “brutalnej siły” polegającej na skopiowaniu rzeczonych plików nagłówkowych na system <em>host</em> (przeniesienie atrybutu właściciela pliku nie jest konieczne),</p>
+    <p>metodą “brutalnej siły” polegającej na skopiowaniu rzeczonych plików nagłówkowych na system <code class="language-plaintext highlighter-rouge">host</code> (przeniesienie atrybutu właściciela pliku nie jest konieczne),</p>
 
     <div class="language-sh highlighter-rouge">
 <div class="code-header">
@@ -1234,14 +1312,14 @@ scp <span class="nt">-r</span> root@opi.usb:/usr/include rootfs/usr/include/
 </tr></tbody></table></code></div>    </div>
   </li>
   <li>
-    <p>metodą “elegancką” polegającą na <a href="#udost%C4%99pnianie-g%C5%82%C3%B3wnego-systemu-plik%C3%B3w-poprzez-nfs">udostępnieniu w trybie <em>tylko do odczytu</em> odpowiedniego fragmentu systemu plików systemu <em>target</em> z wykorzystaniem protokołu NFS</a>.</p>
+    <p>metodą “elegancką” polegającą na <a href="#udost%C4%99pnianie-g%C5%82%C3%B3wnego-systemu-plik%C3%B3w-poprzez-nfs">udostępnieniu w trybie <code class="language-plaintext highlighter-rouge">tylko do odczytu</code> odpowiedniego fragmentu systemu plików systemu <code class="language-plaintext highlighter-rouge">target</code> z wykorzystaniem protokołu NFS</a>.</p>
   </li>
 </ul>
 
-<p>Metoda “brutalnej siły” ma tę wadę, że przynajmniej co do zasady, powinna być powtórzona po każdorazowej aktualizacji oprogramowania na systemie <em>target</em>.
+<p>Metoda “brutalnej siły” ma tę wadę, że przynajmniej co do zasady, powinna być powtórzona po każdorazowej aktualizacji oprogramowania na systemie <code class="language-plaintext highlighter-rouge">target</code>.
 Metodę elegancką opisano w punkcie <a href="#kruczki-i-sztuczki">“Kruczki i sztuczki”</a>.</p>
 
-<p>Następnie, korzystając z pliku ‘<em>.vscode/c_cpp_properties.json</em>’ należy poinformować <em>IntelliSense</em>, które pliki powinny być analizowane</p>
+<p>Następnie, korzystając z pliku ‘<code class="language-plaintext highlighter-rouge">.vscode/c_cpp_properties.json</code>’ należy poinformować <code class="language-plaintext highlighter-rouge">IntelliSense</code>, które pliki powinny być analizowane</p>
 
 <div class="language-json highlighter-rouge">
 <div class="code-header">
@@ -1274,8 +1352,8 @@ Metodę elegancką opisano w punkcie <a href="#kruczki-i-sztuczki">“Kruczki i 
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Target Rootfs"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"includePath"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="s2">"${workspaceFolder}/src/**"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"${workspaceFolder}/rootfs/**"</span><span class="w">
+                </span><span class="s2">"${workspaceFolder}/src/``"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"${workspaceFolder}/rootfs/``"</span><span class="w">
             </span><span class="p">],</span><span class="w">
             </span><span class="nl">"defines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">symbols</span><span class="w"> </span><span class="err">resolved</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">preprocessor</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">unknown</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">IntelliSense</span><span class="w">
                 </span><span class="s2">"NULL=0"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">I</span><span class="w"> </span><span class="err">suspect</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="s2">"#     define NULL 0"</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">types.h</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">accepted</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">cpp</span><span class="p">,</span><span class="w"> </span><span class="err">but</span><span class="w"> </span><span class="err">IGNORED</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">IntelliSense</span><span class="w"> 
@@ -1292,7 +1370,7 @@ Metodę elegancką opisano w punkcie <a href="#kruczki-i-sztuczki">“Kruczki i 
 </tr></tbody></table></code></div>
 </div>
 
-<p>Zagadnienie udostępnienia właściwych plików nagłówkowych będzie się przewijało we wszystkich opisywanych dalej konfiguracjach. W wersji korzystającej z plików udostępnionych za pomocą NFS katalog ‘<em>rootfs</em>’ może być po prostu linkiem symbolicznym do katalogu, w którym widoczne są pliki urządzenia <em>target</em>.</p>
+<p>Zagadnienie udostępnienia właściwych plików nagłówkowych będzie się przewijało we wszystkich opisywanych dalej konfiguracjach. W wersji korzystającej z plików udostępnionych za pomocą NFS katalog ‘<code class="language-plaintext highlighter-rouge">rootfs</code>’ może być po prostu linkiem symbolicznym do katalogu, w którym widoczne są pliki urządzenia <code class="language-plaintext highlighter-rouge">target</code>.</p>
 
 <h2 id="2-kompilacja-skrośna">
 <span class="me-2">2. Kompilacja skrośna</span><a href="#2-kompilacja-skro%C5%9Bna" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
@@ -1302,46 +1380,46 @@ Metodę elegancką opisano w punkcie <a href="#kruczki-i-sztuczki">“Kruczki i 
 
 <ul>
   <li>
-    <p><em>kompilacji</em>, czyli przekształcenia kodu źródłowego na kod binarny dla docelowej architektury,</p>
+    <p><code class="language-plaintext highlighter-rouge">kompilacji</code>, czyli przekształcenia kodu źródłowego na kod binarny dla docelowej architektury,</p>
   </li>
   <li>
-    <p><em>łączenia</em> (ang. <em>liniking</em>), czyli zebrania wielu fragmentów kodu binarnego w jedną aplikację.</p>
+    <p><code class="language-plaintext highlighter-rouge">łączenia</code> (ang. <code class="language-plaintext highlighter-rouge">liniking</code>), czyli zebrania wielu fragmentów kodu binarnego w jedną aplikację.</p>
   </li>
 </ul>
 
 <p>Kompilacji podlega kod źródłowy stworzony przez twórcę oprogramowania wraz z kodem zawartym w plikach nagłówkowych bibliotek.
 Łączeniu podlega kod binarny wyprodukowany w procesie kompilacji z kodem binarnym bibliotek. Kompilator czerpie z plików nagłówkowych informację o kodzie, który będzie dostępny na etapie łączenia, zatem oba te elementy muszą pozostawać w pełnym synchronizmie.
 Sam proces łączenia ma dwie odmiany.
-W łączeniu <em>statycznym</em> wymuszanym na linkerze opcją <code class="language-plaintext highlighter-rouge">-static</code> kod binarny aplikacji oraz wspomagający go kod z bibliotek są ‘sklejane’ w jeden plik.
-Tak zbudowana aplikacja jest samowystarczalna, jednak jej kod wynikowy może być bardzo duży (np. użycie funkcji <em>printf</em> implikuje dołączenie znacznego fragmentu standardowej biblioteki C).
-Bez opcji <code class="language-plaintext highlighter-rouge">-static</code> linker pracuje w trybie łączenia <em>dynamicznego</em>, w którym kod binarny aplikacji jest uzupełniany informacją <strong>o nazwie i wersji biblioteki</strong>, o którą powinien być uzupełniony w momencie uruchomienia. Dzięki takiemu podejściu kod wynikowy aplikacji jest stosunkowo mały, a biblioteki wykorzystywane przez wiele aplikacji są ładowane do pamięci tylko raz. Niestety, w momencie uruchomienia aplikacja nie jest samodzielna jak w przypadku łączenia statycznego, gdyż system, w którym jest uruchamiana, musi być uzupełniony o biblioteki współdzielone niezbędne do działania aplikacji (z dokładnością do wersji biblioteki, aby zapewnić zgodność interfejsu biblioteki zakładanego podczas kompilacji).
+W łączeniu <code class="language-plaintext highlighter-rouge">statycznym</code> wymuszanym na linkerze opcją <code class="language-plaintext highlighter-rouge">-static</code> kod binarny aplikacji oraz wspomagający go kod z bibliotek są ‘sklejane’ w jeden plik.
+Tak zbudowana aplikacja jest samowystarczalna, jednak jej kod wynikowy może być bardzo duży (np. użycie funkcji <code class="language-plaintext highlighter-rouge">printf</code> implikuje dołączenie znacznego fragmentu standardowej biblioteki C).
+Bez opcji <code class="language-plaintext highlighter-rouge">-static</code> linker pracuje w trybie łączenia <code class="language-plaintext highlighter-rouge">dynamicznego</code>, w którym kod binarny aplikacji jest uzupełniany informacją <code class="language-plaintext highlighter-rouge">o nazwie i wersji biblioteki</code>, o którą powinien być uzupełniony w momencie uruchomienia. Dzięki takiemu podejściu kod wynikowy aplikacji jest stosunkowo mały, a biblioteki wykorzystywane przez wiele aplikacji są ładowane do pamięci tylko raz. Niestety, w momencie uruchomienia aplikacja nie jest samodzielna jak w przypadku łączenia statycznego, gdyż system, w którym jest uruchamiana, musi być uzupełniony o biblioteki współdzielone niezbędne do działania aplikacji (z dokładnością do wersji biblioteki, aby zapewnić zgodność interfejsu biblioteki zakładanego podczas kompilacji).
 Ostatecznie budowanie skrośne wymaga spełnienia następujących warunków:</p>
 
 <ol>
   <li>
-    <p>kompilator musi wytwarzać kod binarny zgodny z architekturą urządzenia <em>target</em>,</p>
+    <p>kompilator musi wytwarzać kod binarny zgodny z architekturą urządzenia <code class="language-plaintext highlighter-rouge">target</code>,</p>
   </li>
   <li>
     <p>przetwarzane przez kompilator pliki nagłówkowe muszą być zgodne z kodem binarnym łączonym przez linker,</p>
   </li>
   <li>
-    <p>na etapie uruchamiania, dla programów łączonych dynamicznie, w systemie <em>target</em> muszą być zainstalowane <strong>dokładnie te same</strong> biblioteki, które były przyjęte na etapie łączenia.
-Mówiąc krótko, architektura kodu, deklaracje zawarte w kodach nagłówkowych i biblioteki podczas łączenia i uruchamiania aplikacji <strong>muszą</strong> do siebie pasować.</p>
+    <p>na etapie uruchamiania, dla programów łączonych dynamicznie, w systemie <code class="language-plaintext highlighter-rouge">target</code> muszą być zainstalowane <code class="language-plaintext highlighter-rouge">dokładnie te same</code> biblioteki, które były przyjęte na etapie łączenia.
+Mówiąc krótko, architektura kodu, deklaracje zawarte w kodach nagłówkowych i biblioteki podczas łączenia i uruchamiania aplikacji <code class="language-plaintext highlighter-rouge">muszą</code> do siebie pasować.</p>
   </li>
 </ol>
 
 <p>Podstawowym problemem skrośnego tworzenia oprogramowania jest konstrukcja środowiska gwarantującego spełnienie warunków 1-3.
-Ich poprawne spełnienie wymaga istotnej ingerencji w oprogramowanie zainstalowane na systemie <em>host</em>.
+Ich poprawne spełnienie wymaga istotnej ingerencji w oprogramowanie zainstalowane na systemie <code class="language-plaintext highlighter-rouge">host</code>.
 Zestaw narzędzi umożliwiających przygotowanie kodu binarnego na architekturę inną niż architektura systemu na którym wykonywania jest kompilacja nazywa się <code class="language-plaintext highlighter-rouge">toolchain</code>‘em.
 Nazwa ta podkreśla fakt, że skrośne budowanie aplikacji wymaga zharmonizowanego użycia wielu narzędzi.</p>
 
 <p><code class="language-plaintext highlighter-rouge">Skrośne budowanie aplikacji jest żmudne i podatne na błędy</code></p>
 
 <h3 id="21-instalacja-kompilatora-skrośnego-w-systemie-host">
-<span class="me-2">2.1 Instalacja kompilatora skrośnego w systemie <em>host</em></span><a href="#21-instalacja-kompilatora-skro%C5%9Bnego-w-systemie-host" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+<span class="me-2">2.1 Instalacja kompilatora skrośnego w systemie <code class="language-plaintext highlighter-rouge">host</code></span><a href="#21-instalacja-kompilatora-skro%C5%9Bnego-w-systemie-host" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
 </h3>
 
-<p>Budowanie skrośne jest stosunkowo proste, gdy dla systemu <em>host</em> istnieje gotowy pakiet zawierający zestaw narzędzi do skrośnego budowania aplikacji (tzw. <em>toolchain</em>) oraz podstawowe biblioteki dla architektury docelowej</p>
+<p>Budowanie skrośne jest stosunkowo proste, gdy dla systemu <code class="language-plaintext highlighter-rouge">host</code> istnieje gotowy pakiet zawierający zestaw narzędzi do skrośnego budowania aplikacji (tzw. <code class="language-plaintext highlighter-rouge">toolchain</code>) oraz podstawowe biblioteki dla architektury docelowej</p>
 
 <div class="language-sh highlighter-rouge">
 <div class="code-header">
@@ -1371,7 +1449,7 @@ Problem koegzystencji został rozwiązany poprzez zastosowanie konwencji nazewni
 <span class="me-2">Łączenie statyczne</span><a href="#%C5%82%C4%85czenie-statyczne" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
 </h4>
 
-<p>Szansa, że wersje bibliotek zainstalowanych w ‘<em>crossbuild</em>’ pokrywają się z bibliotekami w środowisku uruchomiania, jest niewielka, zatem konieczne jest uwolnienie się od warunku 3, poprzez wymuszenie łączenia statycznego np.</p>
+<p>Szansa, że wersje bibliotek zainstalowanych w ‘<code class="language-plaintext highlighter-rouge">crossbuild</code>’ pokrywają się z bibliotekami w środowisku uruchomiania, jest niewielka, zatem konieczne jest uwolnienie się od warunku 3, poprzez wymuszenie łączenia statycznego np.</p>
 
 <div class="language-sh highlighter-rouge">
 <div class="code-header">
@@ -1386,18 +1464,18 @@ Problem koegzystencji został rozwiązany poprzez zastosowanie konwencji nazewni
 </tr></tbody></table></code></div>
 </div>
 
-<p>Kompilator i linker skrośny ‘wiedzą’, gdzie w systemie <em>host</em> zainstalowano pliki stosowne dla architektury docelowej, co znacznie upraszcza składnię komend niezbędnych do skutecznego zbudowania aplikacji.
+<p>Kompilator i linker skrośny ‘wiedzą’, gdzie w systemie <code class="language-plaintext highlighter-rouge">host</code> zainstalowano pliki stosowne dla architektury docelowej, co znacznie upraszcza składnię komend niezbędnych do skutecznego zbudowania aplikacji.
 Aplikacja zbudowana jak wyżej może być uruchomiona na dowolnym systemie zgodnym z architekturą zdefiniowaną w zmiennej <code class="language-plaintext highlighter-rouge">PREFIX</code>.
-Jednak za prostotę płacimy cenę: po pierwsze, aplikacja jest stosunkowo duża i po drugie, uzupełnienie zależności o bibliotekę, której brak w pakiecie ‘crossbuild*’ wymaga ręcznej kompilacji skrośnej biblioteki i ujęcia jej <em>explicite</em> w wywołaniach kompilatora i linkera.</p>
+Jednak za prostotę płacimy cenę: po pierwsze, aplikacja jest stosunkowo duża i po drugie, uzupełnienie zależności o bibliotekę, której brak w pakiecie ‘crossbuild`’ wymaga ręcznej kompilacji skrośnej biblioteki i ujęcia jej `explicite* w wywołaniach kompilatora i linkera.</p>
 
 <h4 id="łączenie-dynamiczne">
 <span class="me-2">Łączenie dynamiczne</span><a href="#%C5%82%C4%85czenie-dynamiczne" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
 </h4>
 
-<p>Budowanie skrośne wykorzystujące łączenie dynamiczne jest bardziej złożone, gdyż na systemie <em>host</em> muszą znajdować <strong>te same</strong> biblioteki dynamiczne/współdzielone co na systemie <em>target</em>.
+<p>Budowanie skrośne wykorzystujące łączenie dynamiczne jest bardziej złożone, gdyż na systemie <code class="language-plaintext highlighter-rouge">host</code> muszą znajdować <code class="language-plaintext highlighter-rouge">te same</code> biblioteki dynamiczne/współdzielone co na systemie <code class="language-plaintext highlighter-rouge">target</code>.
 Spełnienie punktu 3 implikuje również instalację plików nagłówkowych skojarzonych z tymi bibliotekami.
-Katalog zawierający te elementy jest nazywany <em>sysroot</em>. Zarówno kompilator skrośny, jak i linker skrośny muszą być poinformowane o jego położeniu. Zawartość <em>sysroot</em> ekstrahuje się z głównego systemu plików systemu <em>target</em>.
-Wymóg utrzymania synchronizmu wymusza aktualizację jego kopii na systemie <em>host</em> po zmianie firmware na urządzeniu <em>target</em>.</p>
+Katalog zawierający te elementy jest nazywany <code class="language-plaintext highlighter-rouge">sysroot</code>. Zarówno kompilator skrośny, jak i linker skrośny muszą być poinformowane o jego położeniu. Zawartość <code class="language-plaintext highlighter-rouge">sysroot</code> ekstrahuje się z głównego systemu plików systemu <code class="language-plaintext highlighter-rouge">target</code>.
+Wymóg utrzymania synchronizmu wymusza aktualizację jego kopii na systemie <code class="language-plaintext highlighter-rouge">host</code> po zmianie firmware na urządzeniu <code class="language-plaintext highlighter-rouge">target</code>.</p>
 
 <div class="language-sh highlighter-rouge">
 <div class="code-header">
@@ -1416,12 +1494,12 @@ Wymóg utrzymania synchronizmu wymusza aktualizację jego kopii na systemie <em>
 Jednocześnie jest ona wykorzystywana przez kompilator skrośny do poszukiwania plików.
 Zatem łączenie dynamiczne aby prefiks kompilatora był taki sam jak dla <code class="language-plaintext highlighter-rouge">rootfs</code>.</p>
 
-<p><strong>Spełnienie tego warunku jest konieczne do bezproblemowej kompilacji i łączenia w trybie dynamicznym</strong></p>
+<p><code class="language-plaintext highlighter-rouge">Spełnienie tego warunku jest konieczne do bezproblemowej kompilacji i łączenia w trybie dynamicznym</code></p>
 
-<p>Inną, bardziej elegancką metodą zapewnienia widoczności plików z urządzenia <em>target</em> jest ich <a href="#udost%C4%99pnianie-g%C5%82%C3%B3wnego-systemu-plik%C3%B3w-poprzez-nfs">udostępnienie z wykorzystaniem protokołu NFS</a>.</p>
+<p>Inną, bardziej elegancką metodą zapewnienia widoczności plików z urządzenia <code class="language-plaintext highlighter-rouge">target</code> jest ich <a href="#udost%C4%99pnianie-g%C5%82%C3%B3wnego-systemu-plik%C3%B3w-poprzez-nfs">udostępnienie z wykorzystaniem protokołu NFS</a>.</p>
 
-<p>Poniżej przedstawiono definicje zadań kompilacji statycznej i dynamicznej w <em>Visual Studio Code</em>.
-Dla kompilacji dynamicznej przyjęto założenie, że system plików urządzenia <em>target</em> jest widoczny w katalogu ‘<em>rootfs/</em>’.</p>
+<p>Poniżej przedstawiono definicje zadań kompilacji statycznej i dynamicznej w <code class="language-plaintext highlighter-rouge">Visual Studio Code</code>.
+Dla kompilacji dynamicznej przyjęto założenie, że system plików urządzenia <code class="language-plaintext highlighter-rouge">target</code> jest widoczny w katalogu ‘<code class="language-plaintext highlighter-rouge">rootfs/</code>’.</p>
 
 <div class="language-json highlighter-rouge">
 <div class="code-header">
@@ -1512,7 +1590,7 @@ Dla kompilacji dynamicznej przyjęto założenie, że system plików urządzenia
 <span class="me-2">2.2 Konteneryzacja środowiska kompilacji skrośnej</span><a href="#22-konteneryzacja-%C5%9Brodowiska-kompilacji-skro%C5%9Bnej" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
 </h3>
 
-<p>Instalowanie w systemie <em>host</em> kilku środowisk skrośnych prowadzi do dość sporego zamieszania w organizacji plików, zwłaszcza jeżeli narzędzia te pochodzą z równych źródeł.
+<p>Instalowanie w systemie <code class="language-plaintext highlighter-rouge">host</code> kilku środowisk skrośnych prowadzi do dość sporego zamieszania w organizacji plików, zwłaszcza jeżeli narzędzia te pochodzą z równych źródeł.
 Atrakcyjną alternatywą jest zamknięcie tych środowisk w kontenerach <code class="language-plaintext highlighter-rouge">Docker</code>‘a.
 Zaletą jest o wiele łatwiejsze zarządzanie i całkowity brak interferencji pomiędzy tak zorganizowanymi środowiskami.
 W ramach projektu <a href="https://github.com/dockcross/dockcross/"><code class="language-plaintext highlighter-rouge">Dockcross</code></a> zamknięto w kontenerach narzędzia kompilacji na wiele platform docelowych.
@@ -1537,7 +1615,7 @@ Dostępne typy architektur można sprawdzić w repozytorium <code class="languag
 </tr></tbody></table></code></div>
 </div>
 
-<p>W jej wyniku na system <em>host</em> zostanie pobrany odpowiedni kontener, a w katalogu projektu utworzony skrypt <code class="language-plaintext highlighter-rouge">dockcross</code> umożliwiający korzystanie z jego zawartości.
+<p>W jej wyniku na system <code class="language-plaintext highlighter-rouge">host</code> zostanie pobrany odpowiedni kontener, a w katalogu projektu utworzony skrypt <code class="language-plaintext highlighter-rouge">dockcross</code> umożliwiający korzystanie z jego zawartości.
 Jeżeli kontener ma być używany również w innych projektach to skrypt należy przenieść do katalogu znajdującego się na ścieżce dostępu i zmienić jego nazwę na taką, która informuje o nazwie architektury. 
 Parametry linii komend tego skryptu traktowane są jak linia poleceń, którą należy przekazać do kontenera.
 Jednocześnie bieżący katalog jest mapowany do wnętrza kontenera, co powoduje, że pliki projektu są dostępne dla kompilatora w katalogu roboczym kontenera.
@@ -1632,15 +1710,15 @@ W rezultacie komenda realizująca kompilację skrośną wymaga prostego uzupełn
 <span class="me-2">3. Debugowanie skrośne</span><a href="#3-debugowanie-skro%C5%9Bne" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
 </h2>
 
-<p>Natywne debugowanie kodu z wykorzystaniem GUI pracującego na systemie <em>target</em> jest często awykonalne, głównie ze względu na ograniczony interfejs użytkownika i niezbyt duże zasoby urządzenia.
-Z kolei zdalna praca w konsoli tekstowej z debuggerem <em>gdb</em> jest doznaniem ekstremalnym.</p>
+<p>Natywne debugowanie kodu z wykorzystaniem GUI pracującego na systemie <code class="language-plaintext highlighter-rouge">target</code> jest często awykonalne, głównie ze względu na ograniczony interfejs użytkownika i niezbyt duże zasoby urządzenia.
+Z kolei zdalna praca w konsoli tekstowej z debuggerem <code class="language-plaintext highlighter-rouge">gdb</code> jest doznaniem ekstremalnym.</p>
 
-<p>Rozwiązaniem problemu jest podzielenie zadania uruchamiania na dwa oddzielne procesy. Proces <em>gdbserver</em> pracuje na systemie <em>target</em> i odpowiada za krokowe wykonywanie uruchamianej aplikacji.
-Z kolei interfejs użytkownika uruchomiony na systemie <em>host</em> komunikuje się z serwerem poprzez sieć lub łącze szeregowe (w dalszej części pojawią się konfiguracje dla łącza sieciowego).
-Programem uruchomionym na systemie <em>host</em> jest <em>gdb-multiarch</em> (jest to wersja <em>gdb</em>, która “rozumie” różne architektury). Oba komponenty komunikują się za pomocą protokołu TCP/IP.
-W efekcie struktura komunikacji pomiędzy narzędziami jest następująca: interfejs GUI uruchomiony w systemie <em>host</em> komunikuje się lokalnie z <em>gdb-multiarch</em>, który z kolei poprzez sieć komunikuje się z <em>gdbserver</em> uruchomionym na systemie <em>target</em>.
-GUI odpowiedzialne za przeprowadzenie sesji uruchamiania musi poinformować <em>gdb-multiarch</em> o architekturze uruchamianego kodu i adresie serwera oczekującego na połączenie.
-W <em>Visual Studio Code</em> za konfigurację procesu uruchamiania odpowiedzialny jest plik ‘<em>.vscode/launch.json</em>’.
+<p>Rozwiązaniem problemu jest podzielenie zadania uruchamiania na dwa oddzielne procesy. Proces <code class="language-plaintext highlighter-rouge">gdbserver</code> pracuje na systemie <code class="language-plaintext highlighter-rouge">target</code> i odpowiada za krokowe wykonywanie uruchamianej aplikacji.
+Z kolei interfejs użytkownika uruchomiony na systemie <code class="language-plaintext highlighter-rouge">host</code> komunikuje się z serwerem poprzez sieć lub łącze szeregowe (w dalszej części pojawią się konfiguracje dla łącza sieciowego).
+Programem uruchomionym na systemie <code class="language-plaintext highlighter-rouge">host</code> jest <code class="language-plaintext highlighter-rouge">gdb-multiarch</code> (jest to wersja <code class="language-plaintext highlighter-rouge">gdb</code>, która “rozumie” różne architektury). Oba komponenty komunikują się za pomocą protokołu TCP/IP.
+W efekcie struktura komunikacji pomiędzy narzędziami jest następująca: interfejs GUI uruchomiony w systemie <code class="language-plaintext highlighter-rouge">host</code> komunikuje się lokalnie z <code class="language-plaintext highlighter-rouge">gdb-multiarch</code>, który z kolei poprzez sieć komunikuje się z <code class="language-plaintext highlighter-rouge">gdbserver</code> uruchomionym na systemie <code class="language-plaintext highlighter-rouge">target</code>.
+GUI odpowiedzialne za przeprowadzenie sesji uruchamiania musi poinformować <code class="language-plaintext highlighter-rouge">gdb-multiarch</code> o architekturze uruchamianego kodu i adresie serwera oczekującego na połączenie.
+W <code class="language-plaintext highlighter-rouge">Visual Studio Code</code> za konfigurację procesu uruchamiania odpowiedzialny jest plik ‘<code class="language-plaintext highlighter-rouge">.vscode/launch.json</code>’.
 Dla rozważanego projektu przyjmie on postać</p>
 
 <div class="language-json highlighter-rouge">
@@ -1718,8 +1796,8 @@ Dla rozważanego projektu przyjmie on postać</p>
 </tr></tbody></table></code></div>
 </div>
 
-<p>Sesję uruchamiania aktywuje się skrótem “<em>F5</em>” lub wybierając ikonę “żuczka” <a href="/pejotzetbug.png" class="popup img-link "><img data-src="/pejotzetbug.png" alt="bug" class="lazyload" data-proofer-ignore></a> na pasku bocznym.
-Powyższe zadanie realizuje tylko komunikację lokalną z <em>gdb-multiarch</em>, tak więc każdorazowo <strong><em>przed rozpoczęciem sesji uruchamiania</em></strong> należy w terminalu <em>Visual Studio Code</em> wydać komendę</p>
+<p>Sesję uruchamiania aktywuje się skrótem “<code class="language-plaintext highlighter-rouge">F5</code>” lub wybierając ikonę “żuczka” <a href="/pejotzetbug.png" class="popup img-link "><img data-src="/pejotzetbug.png" alt="bug" class="lazyload" data-proofer-ignore></a> na pasku bocznym.
+Powyższe zadanie realizuje tylko komunikację lokalną z <code class="language-plaintext highlighter-rouge">gdb-multiarch</code>, tak więc każdorazowo <code class="language-plaintext highlighter-rouge">przed rozpoczęciem sesji uruchamiania</code> należy w terminalu <code class="language-plaintext highlighter-rouge">Visual Studio Code</code> wydać komendę</p>
 
 <div class="language-sh highlighter-rouge">
 <div class="code-header">
@@ -1734,7 +1812,7 @@ Powyższe zadanie realizuje tylko komunikację lokalną z <em>gdb-multiarch</em>
 </tr></tbody></table></code></div>
 </div>
 
-<p>Zadanie można sobie znacznie ułatwić, dopisując odpowiednie cele do ‘<em>Makefile</em>’</p>
+<p>Zadanie można sobie znacznie ułatwić, dopisując odpowiednie cele do ‘<code class="language-plaintext highlighter-rouge">Makefile</code>’</p>
 
 <pre><code class="language-Makefile">debug: $(APPNAME)
   scp $(APPNAME) $(REMOTE): &amp;&amp; ssh -t $(REMOTE) "gdbserver --once localhost:1234 ./$(APPNAME)"
@@ -1754,11 +1832,11 @@ Zazwyczaj budowanie aplikacji poprzedzonej jest uruchomieniem skryptu <code clas
 Zadaniem skryptu jest wykrycie dostępności pewnych składników systemie, ustawienie odpowiednich flag kompilacji i przygotowanie pliku <code class="language-plaintext highlighter-rouge">Makefile</code> dla programu <code class="language-plaintext highlighter-rouge">make</code>.
 Schemat ten działa poprawnie gdy system na którym ma być wykonywania aplikacja jest identycznie skonfigurowany (w sensie dostępności wykrywanych składników) z systemem na którym wykonywana jest aplikacja.
 W przypadku kompilacji skrośnej założenie to nie jest spełnione.
-Skrypt <code class="language-plaintext highlighter-rouge">./configure</code> po prostu <strong>odpytuje niewłaściwy system</strong>.
+Skrypt <code class="language-plaintext highlighter-rouge">./configure</code> po prostu <code class="language-plaintext highlighter-rouge">odpytuje niewłaściwy system</code>.
 W efekcie ustawione opcje kompilacji są niepoprawne, co skutkuje błędami kompilacji, lub co gorsza, wygenerowaniem niewłaściwie działającego kodu.
 Ręczny dobór odpowiednich przełączników i adaptacja obcego kodu źródłowego jest zazwyczaj doznaniem ekstremalnym.</p>
 
-<p><strong>W zasadzie wszystkie opisane problemy można rozwiązać stosując <a href="../../post/2023-08-13-emulated-building-for-sbc/">kompilację w trybie emulowanym</a>.</strong></p>
+<p><code class="language-plaintext highlighter-rouge">W zasadzie wszystkie opisane problemy można rozwiązać stosując [kompilację w trybie emulowanym](../../post/2023-08-13-emulated-building-for-sbc/).</code></p>
 
 <h3 id="wady-i-zalety">
 <span class="me-2">Wady i zalety</span><a href="#wady-i-zalety" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
@@ -1776,7 +1854,7 @@ Ręczny dobór odpowiednich przełączników i adaptacja obcego kodu źródłowe
   <tbody>
     <tr>
       <td>możliwość tworzenie kodu łączonego dynamicznie</td>
-      <td>konieczność instalacji narzędzi deweloperskich na urządzeniu <em>target</em>
+      <td>konieczność instalacji narzędzi deweloperskich na urządzeniu <code class="language-plaintext highlighter-rouge">target</code>
 </td>
     </tr>
     <tr>
@@ -1813,79 +1891,158 @@ Ręczny dobór odpowiednich przełączników i adaptacja obcego kodu źródłowe
 
 <p><code class="language-plaintext highlighter-rouge">Makefile</code> na wszystkie okazje</p>
 
-<pre><code class="language-Makefile"># Compiler settings - Can be customized.
-PREFIX=
-STATIC=
-CC = $(PREFIX)gcc
-CXX =$(PREFIX)g++
-CPPFLAGS =
-CFLAGS = -std=c11 -g -Wall -fdiagnostics-color=always
-CXXFLAGS = -std=c++11 -g -Wall -fdiagnostics-color=always
-# LDFLAGS = $(STATIC) -lpthread -lgpiod 
-LDFLAGS = $(STATIC) 
+<div class="language-make highlighter-rouge">
+<div class="code-header">
+        <span data-label-text="Makefile"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Skopiowano!"><i class="far fa-clipboard"></i></button>
+</div>
+<div class="highlight"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+</pre></td>
+<td class="rouge-code"><pre><span class="c"># Compiler settings - Can be customized.
+</span><span class="nv">PREFIX</span><span class="o">=</span>
+<span class="nv">STATIC</span><span class="o">=</span>
+<span class="nv">CC</span> <span class="o">=</span> <span class="p">$(</span>PREFIX<span class="p">)</span>gcc
+<span class="nv">CXX</span> <span class="o">=</span><span class="p">$(</span>PREFIX<span class="p">)</span>g++
+<span class="nv">CPPFLAGS</span> <span class="o">=</span>
+<span class="nv">CFLAGS</span> <span class="o">=</span> <span class="nt">-std</span><span class="o">=</span>c11 <span class="nt">-g</span> <span class="nt">-Wall</span> <span class="nt">-fdiagnostics-color</span><span class="o">=</span>always
+<span class="nv">CXXFLAGS</span> <span class="o">=</span> <span class="nt">-std</span><span class="o">=</span>c++11 <span class="nt">-g</span> <span class="nt">-Wall</span> <span class="nt">-fdiagnostics-color</span><span class="o">=</span>always
+<span class="c"># LDFLAGS = $(STATIC) -lpthread -lgpiod 
+</span><span class="nv">LDFLAGS</span> <span class="o">=</span> <span class="p">$(</span>STATIC<span class="p">)</span> 
 
-ifdef SYSROOT
-    CFLAGS += --sysroot=$(SYSROOT)
-    CXXFLAGS += --sysroot=$(SYSROOT)
-    LDLAGS += --sysroot=$(SYSROOT)
-endif
+<span class="k">ifdef</span> <span class="nv">SYSROOT</span>
+    <span class="nv">CFLAGS</span> <span class="o">+=</span> <span class="nt">--sysroot</span><span class="o">=</span><span class="p">$(</span>SYSROOT<span class="p">)</span>
+    <span class="nv">CXXFLAGS</span> <span class="o">+=</span> <span class="nt">--sysroot</span><span class="o">=</span><span class="p">$(</span>SYSROOT<span class="p">)</span>
+    <span class="nv">LDLAGS</span> <span class="o">+=</span> <span class="nt">--sysroot</span><span class="o">=</span><span class="p">$(</span>SYSROOT<span class="p">)</span>
+<span class="k">endif</span>
 
-# Makefile settings - Can be customized.
-APPNAME = main
-EXT = .c
-SRCDIR = src
-OBJDIR = obj
-REMOTE = root@opi.usb
-REMOTEPWD = /root/RemotePowerButton
+<span class="c"># Makefile settings - Can be customized.
+</span><span class="nv">APPNAME</span> <span class="o">=</span> main
+<span class="nv">EXT</span> <span class="o">=</span> .c
+<span class="nv">SRCDIR</span> <span class="o">=</span> src
+<span class="nv">OBJDIR</span> <span class="o">=</span> obj
+<span class="nv">REMOTE</span> <span class="o">=</span> root@opi.usb
+<span class="nv">REMOTEPWD</span> <span class="o">=</span> /root/RemotePowerButton
 
-SRC = $(wildcard $(SRCDIR)/*$(EXT))
-OBJ = $(SRC:$(SRCDIR)/%$(EXT)=$(OBJDIR)/%.o)
-DEP = $(OBJ:$(OBJDIR)/%.o=%.d)
+<span class="nv">SRC</span> <span class="o">=</span> <span class="p">$(</span>wildcard <span class="p">$(</span>SRCDIR<span class="p">)</span>/<span class="k">*</span><span class="p">$(</span>EXT<span class="p">))</span>
+<span class="nv">OBJ</span> <span class="o">=</span> <span class="p">$(</span>SRC:<span class="p">$(</span>SRCDIR<span class="p">)</span>/%<span class="p">$(</span>EXT<span class="p">)</span><span class="o">=</span><span class="p">$(</span>OBJDIR<span class="p">)</span>/%.o<span class="p">)</span>
+<span class="nv">DEP</span> <span class="o">=</span> <span class="p">$(</span>OBJ:<span class="p">$(</span>OBJDIR<span class="p">)</span>/%.o<span class="o">=</span>%.d<span class="p">)</span>
 
-RM = rm -f
+<span class="nv">RM</span> <span class="o">=</span> <span class="nb">rm</span> <span class="nt">-f</span>
 
-all: $(APPNAME)
+<span class="nl">all</span><span class="o">:</span> <span class="nf">$(APPNAME)</span>
 
-# Copy sources to target
-.PHONY: copysrc
-copysrc:
-  scp -p -r ./src/ ./obj/ ./Makefile $(REMOTE):$(REMOTEPWD)
+<span class="c"># Copy sources to target
+</span><span class="nl">.PHONY</span><span class="o">:</span> <span class="nf">copysrc</span>
+<span class="nl">copysrc</span><span class="o">:</span>
+  <span class="nl">scp -p -r ./src/ ./obj/ ./Makefile $(REMOTE)</span><span class="o">:</span><span class="nf">$(REMOTEPWD)</span>
 
-.PHONY: debug
-debug: $(APPNAME)
-  scp $(APPNAME) $(REMOTE): &amp;&amp; ssh -t $(REMOTE) "gdbserver --once localhost:1234 ./$(APPNAME)"
+<span class="nl">.PHONY</span><span class="o">:</span> <span class="nf">debug</span>
+<span class="nl">debug</span><span class="o">:</span> <span class="nf">$(APPNAME)</span>
+  <span class="nl">scp $(APPNAME) $(REMOTE)</span><span class="o">:</span> <span class="nf">&amp;&amp; ssh -t $(REMOTE) "gdbserver --once localhost:1234 ./$(APPNAME)"</span>
 
-.PHONY: run
-run: $(APPNAME)
-  scp $(APPNAME) $(REMOTE): &amp;&amp; ssh -t $(REMOTE) "./$(APPNAME)"
+<span class="nl">.PHONY</span><span class="o">:</span> <span class="nf">run</span>
+<span class="nl">run</span><span class="o">:</span> <span class="nf">$(APPNAME)</span>
+  <span class="nl">scp $(APPNAME) $(REMOTE)</span><span class="o">:</span> <span class="nf">&amp;&amp; ssh -t $(REMOTE) "./$(APPNAME)"</span>
 
-# Builds the app
-$(APPNAME): $(OBJ)
-  $(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+<span class="c"># Builds the app
+</span><span class="nl">$(APPNAME)</span><span class="o">:</span> <span class="nf">$(OBJ)</span>
+  <span class="err">$(CC)</span> <span class="err">$(CFLAGS)</span> <span class="err">-o</span> <span class="err">$@</span> <span class="err">$^</span> <span class="err">$(LDFLAGS)</span>
 
-# Creates the dependecy rules
-%.d: $(SRCDIR)/%$(EXT)
-  @$(CPP) $(CFLAGS) $(CPPFLAGS) $&lt; -MM -MT $(@:%.d=$(OBJDIR)/%.o) &gt;$@
+<span class="c"># Creates the dependecy rules
+</span><span class="nl">%.d</span><span class="o">:</span> <span class="nf">$(SRCDIR)/%$(EXT)</span>
+  <span class="nl">@$(CPP) $(CFLAGS) $(CPPFLAGS) $&lt; -MM -MT $(@</span><span class="o">:</span><span class="nf">%.d=$(OBJDIR)/%.o) &gt;$@</span>
 
-# Includes all .h files
--include $(DEP)
+<span class="c"># Includes all .h files
+</span><span class="k">-include</span><span class="sx"> $(DEP)</span>
 
-# Building rule for .o files and its .c/.cpp in combination with all .h
-$(OBJDIR)/%.o: $(SRCDIR)/%$(EXT)
-  $(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $&lt;
+<span class="c"># Building rule for .o files and its .c/.cpp in combination with all .h
+</span><span class="nl">$(OBJDIR)/%.o</span><span class="o">:</span> <span class="nf">$(SRCDIR)/%$(EXT)</span>
+  <span class="err">$(CC)</span> <span class="err">$(CFLAGS)</span> <span class="err">$(CPPFLAGS)</span> <span class="err">-o</span> <span class="err">$@</span> <span class="err">-c</span> <span class="err">$&lt;</span>
 
-# Cleans complete project
-.PHONY: clean
-clean:
-  $(RM) $(OBJ) $(DEP) $(APPNAME)
+<span class="c"># Cleans complete project
+</span><span class="nl">.PHONY</span><span class="o">:</span> <span class="nf">clean</span>
+<span class="nl">clean</span><span class="o">:</span>
+  <span class="err">$(RM)</span> <span class="err">$(OBJ)</span> <span class="err">$(DEP)</span> <span class="err">$(APPNAME)</span>
 
-# Cleans only all files with the extension .d
-.PHONY: cleandep
-cleandep:
-  $(RM) $(DEP)
-</code></pre>
+<span class="c"># Cleans only all files with the extension .d
+</span><span class="nl">.PHONY</span><span class="o">:</span> <span class="nf">cleandep</span>
+<span class="nl">cleandep</span><span class="o">:</span>
+  <span class="err">$(RM)</span> <span class="err">$(DEP)</span>
+</pre></td>
+</tr></tbody></table></code></div>
+</div>
 
-<p>Wszystkie definicje zadań `<em>.vscode/tasks.json</em>’</p>
+<p>Wszystkie definicje zadań ``.vscode/tasks.json`’</p>
 
 <div class="language-json highlighter-rouge">
 <div class="code-header">
@@ -2004,7 +2161,7 @@ cleandep:
 </tr></tbody></table></code></div>
 </div>
 
-<p>Konfiguracja <em>IntelliSense</em> w ‘<em>.vscode/c_cpp_properties.json</em>’</p>
+<p>Konfiguracja <code class="language-plaintext highlighter-rouge">IntelliSense</code> w ‘<code class="language-plaintext highlighter-rouge">.vscode/c_cpp_properties.json</code>’</p>
 
 <div class="language-json highlighter-rouge">
 <div class="code-header">
@@ -2037,8 +2194,8 @@ cleandep:
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NativeOverSSH"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"includePath"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="s2">"${workspaceFolder}/src/**"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"${workspaceFolder}/rootfs/**"</span><span class="w">
+                </span><span class="s2">"${workspaceFolder}/src/``"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"${workspaceFolder}/rootfs/``"</span><span class="w">
             </span><span class="p">],</span><span class="w">
             </span><span class="nl">"defines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">symbols</span><span class="w"> </span><span class="err">resolved</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">preprocessor</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">unknown</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">IntelliSense</span><span class="w">
                 </span><span class="s2">"NULL=0"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">I</span><span class="w"> </span><span class="err">suspect</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="s2">"#     define NULL 0"</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">types.h</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">accepted</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">cpp</span><span class="p">,</span><span class="w"> </span><span class="err">but</span><span class="w"> </span><span class="err">IGNORED</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">IntelliSense</span><span class="w"> 
@@ -2055,7 +2212,7 @@ cleandep:
 </tr></tbody></table></code></div>
 </div>
 
-<p>Konfiguracja sesji uruchamiania w ‘<em>.vscode/launch.json</em>’</p>
+<p>Konfiguracja sesji uruchamiania w ‘<code class="language-plaintext highlighter-rouge">.vscode/launch.json</code>’</p>
 
 <div class="language-json highlighter-rouge">
 <div class="code-header">
@@ -2144,7 +2301,7 @@ cleandep:
   <li>
     <p>Zdalny dostęp do konta administratora</p>
 
-    <p>W pliku <em>/etc/ssh/sshd_config</em>’ (<em>target</em>) należy ustawić opcję</p>
+    <p>W pliku <code class="language-plaintext highlighter-rouge">/etc/ssh/sshd_config</code>’ (<code class="language-plaintext highlighter-rouge">target</code>) należy ustawić opcję</p>
 
     <pre><code class="language-txt"> PermitRootLogin   yes
 </code></pre>
@@ -2153,15 +2310,15 @@ cleandep:
     <p>Logowanie bez konieczności podawania hasła</p>
     <ul>
       <li>
-        <p>Serwer <em>ssh</em> musi zezwalać na uwierzytelnienie za pomocą kluczy publicznych.
-W pliku <em>/etc/ssh/sshd_config</em>’ (<em>target</em>) należy ustawić opcje</p>
+        <p>Serwer <code class="language-plaintext highlighter-rouge">SSH</code> musi zezwalać na uwierzytelnienie za pomocą kluczy publicznych.
+W pliku <code class="language-plaintext highlighter-rouge">/etc/ssh/sshd_config</code>’ (<code class="language-plaintext highlighter-rouge">target</code>) należy ustawić opcje</p>
 
         <pre><code class="language-txt">PubkeyAuthentication   yes
 AuthorizedKeysFile    .ssh/authorized_keys    .ssh/authorized_keys2
 </code></pre>
       </li>
       <li>
-        <p>Użytkownik systemu <em>host</em> musi mieć wygenerowane osobiste klucze <em>ssh</em>. Generacja komendą</p>
+        <p>Użytkownik systemu <code class="language-plaintext highlighter-rouge">host</code> musi mieć wygenerowane osobiste klucze <code class="language-plaintext highlighter-rouge">SSH</code>. Generacja komendą</p>
 
         <pre><code class="language-txt">ssh-keygen
 </code></pre>
@@ -2169,8 +2326,8 @@ AuthorizedKeysFile    .ssh/authorized_keys    .ssh/authorized_keys2
         <p>Opcją ‘-t’ można wymusić typ klucza, a opcją ‘-b’ jego długość. Wygenerowane klucze, prywatny i publiczny, umieszczone są w podkatalogu ‘.ssh’ katalogu domowego (publiczny ma rozszerzenie ‘pub’).</p>
       </li>
       <li>
-        <p>Klucz publiczny należy umieścić na systemie <em>target</em> w pliku ‘<em>.ssh/authorized_keys</em>’ na
-koncie docelowym. Wygodne kopiowanie zapewnia komenda (poniżej użyto konta <em>root</em>)</p>
+        <p>Klucz publiczny należy umieścić na systemie <code class="language-plaintext highlighter-rouge">target</code> w pliku ‘<code class="language-plaintext highlighter-rouge">.ssh/authorized_keys</code>’ na
+koncie docelowym. Wygodne kopiowanie zapewnia komenda (poniżej użyto konta <code class="language-plaintext highlighter-rouge">root</code>)</p>
 
         <div class="language-sh highlighter-rouge">
 <div class="code-header">
@@ -2190,20 +2347,20 @@ koncie docelowym. Wygodne kopiowanie zapewnia komenda (poniżej użyto konta <em
 
 <!-- ### Pobranie głównego systemu plików z działającego urządzenia
 
-Jeżeli główny system plików archiwizujemy z działającego urządzenia *target*, to przed operacją archiwizacji katalog główny należy zamontować w innym miejscu przy użyciu 'mount --bind' i dopiero w nim wydać komendę archiwizacji. Wynik archiwizacji najlepiej od razu pobrać na system *host*
+Jeżeli główny system plików archiwizujemy z działającego urządzenia `target`, to przed operacją archiwizacji katalog główny należy zamontować w innym miejscu przy użyciu 'mount --bind' i dopiero w nim wydać komendę archiwizacji. Wynik archiwizacji najlepiej od razu pobrać na system `host`
 
 ```sh
 ssh root@opi.usb 'mkdir -p /tmp/rootfs && mount --bind / /tmp/rootfs && cd /tmp/rootfs/ && tar cf - *' > rootfs.tar
 ```
 
-W powyższej komendzie *opi.usb* to nazwa sieciowa urządzenia *target* i może być zastąpiona przez jego numer IP. -->
+W powyższej komendzie `opi.usb` to nazwa sieciowa urządzenia `target` i może być zastąpiona przez jego numer IP. -->
 
 <h3 id="42-udostępnianie-głównego-systemu-plików-poprzez-nfs">
 <span class="me-2">4.2 Udostępnianie głównego systemu plików poprzez NFS</span><a href="#42-udost%C4%99pnianie-g%C5%82%C3%B3wnego-systemu-plik%C3%B3w-poprzez-nfs" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
 </h3>
 
 <h4 id="system-target">
-<span class="me-2">System <em>target</em></span><a href="#system-target" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+<span class="me-2">System <code class="language-plaintext highlighter-rouge">target</code></span><a href="#system-target" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
 </h4>
 
 <ol>
@@ -2272,7 +2429,7 @@ W powyższej komendzie *opi.usb* to nazwa sieciowa urządzenia *target* i może 
 </ol>
 
 <h4 id="system-host">
-<span class="me-2">System <em>host</em></span><a href="#system-host" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
+<span class="me-2">System <code class="language-plaintext highlighter-rouge">host</code></span><a href="#system-host" class="anchor text-muted"><i class="fas fa-hashtag"></i></a>
 </h4>
 
 <ol>
@@ -2320,17 +2477,23 @@ W powyższej komendzie *opi.usb* to nazwa sieciowa urządzenia *target* i może 
 </pre></td>
 </tr></tbody></table></code></div>    </div>
 
-    <p>Kompilator należy poinformować, że katalogiem ‘<em>sysroot</em>’ jest ‘<em>/mnt/sysroot</em>’.</p>
+    <p>Kompilator należy poinformować, że katalogiem ‘<code class="language-plaintext highlighter-rouge">sysroot</code>’ jest ‘<code class="language-plaintext highlighter-rouge">/mnt/sysroot</code>’.</p>
   </li>
 </ol>
 
-<p>P.S. <em>Chętnie się dowiem jak prosto udostępnić “/” w którym są linki symboliczne np. <code class="language-plaintext highlighter-rouge">bin-&gt;/usr/bin</code></em>.</p>
+<p>P.S. <code class="language-plaintext highlighter-rouge">Chętnie się dowiem jak prosto udostępnić "/" w którym są linki symboliczne np. </code>bin-&gt;/usr/bin``.</p>
 
 </div>
 
 <div class="post-tail-wrapper text-muted">
 
   <!-- categories -->
+  
+  <div class="post-meta mb-3">
+    <i class="far fa-folder-open fa-fw me-1"></i>
+    
+      <a href="/pejotzet/categories/programowanie/">Programowanie</a>
+  </div>
   
 
   <!-- tags -->
@@ -2430,6 +2593,42 @@ W powyższej komendzie *opi.usb* to nazwa sieciowa urządzenia *target* i może 
 
 
 
+
+  <div id="access-lastmod" class="post">
+    <div class="panel-heading">Ostatnio zmienione</div>
+    <ul class="post-content list-unstyled ps-0 pb-1 ms-1 mt-2">
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/pejotzet/posts/static-site-in-hugo/">Jak założyć i utrzymywać statyczny serwis WWW wykorzystując Docker'a, Code i Hugo</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/pejotzet/posts/C-Cpp-development-for-SBC-in-Code/">Jak kompilować i debugować aplikacje w C/C++ na komputery jednopłytkowe korzystając z VS Code</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/pejotzet/posts/how-to-debug-esp32-with-esp-prog/">Jak uruchamiać programy dla ESP32 korzystając z ESP-Prog</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/pejotzet/posts/emulated-building-for-SBC/">Budowanie aplikacji dla SBC w środowisku emulowanym</a>
+        </li>
+      
+    </ul>
+  </div>
+  <!-- #access-lastmod -->
 
 
       <!-- The trending tags list -->
@@ -2915,7 +3114,31 @@ W powyższej komendzie *opi.usb* to nazwa sieciowa urządzenia *target* i może 
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 
 
 
@@ -2960,6 +3183,75 @@ W powyższej komendzie *opi.usb* to nazwa sieciowa urządzenia *target* i może 
                   Komputery jednopłytkowe (ang. SBC — Single Board Computer) to uniwersalne urządzenia mikroprocesorowe pracujące pod kontrolą systemu operacyjnego.
 Zazwyczaj systemem tym jest Linux.
 Architektury ko...
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+      
+        <div class="col">
+          <a href="/pejotzet/posts/static-site-in-hugo/" class="card post-preview h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+
+<em class="small" data-ts="1691230003" data-df="ll">
+  Aug  5, 2023
+</em>
+
+              <h4 class="pt-0 my-2" data-toc-skip>Jak założyć i utrzymywać statyczny serwis WWW wykorzystując Docker'a, Code i Hugo</h4>
+              <div class="text-muted small">
+                <p>
+                  
+
+
+
+
+
+                  W poradniku pokazano jak wykorzystać konteneryzację i wsparcie dla niej w Visual Studio Code do realizacji statycznego serwisu WWW.
+Opis obejmuje wykorzystanie kontenerów do stworzenia hermetyczneg...
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+      
+        <div class="col">
+          <a href="/pejotzet/posts/how-to-debug-esp32-with-esp-prog/" class="card post-preview h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+
+<em class="small" data-ts="1691846000" data-df="ll">
+  Aug 12, 2023
+</em>
+
+              <h4 class="pt-0 my-2" data-toc-skip>Jak uruchamiać programy dla ESP32 korzystając z ESP-Prog</h4>
+              <div class="text-muted small">
+                <p>
+                  
+
+
+
+
+
+                  
+
+
+ESP-Prog jest programatorem i debuggerem do platformy ESP32.
+Niniejszy dokument opisuje jak korzystać z tego urządzenia w systemie Linux z zainstalowanym edytorem Code wyposażonym w rozszerzenie...
                 </p>
               </div>
             </div>

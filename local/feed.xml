@@ -4,7 +4,7 @@
   <id>https://mikroprofesor.duckdns.org/</id>
   <title>Net i Dev Blog</title>
   <subtitle>W serwisie znajdziesz porady dotyczące programowania sieci komputerowych.</subtitle>
-  <updated>2023-08-19T13:11:12+02:00</updated>
+  <updated>2023-08-20T08:40:22+02:00</updated>
   <author>
     <name>PeJotZet</name>
     <uri>https://mikroprofesor.duckdns.org/</uri>
@@ -24,7 +24,7 @@
     <link href="https://mikroprofesor.duckdns.org/posts/emulated-building-for-SBC/" rel="alternate" type="text/html" title="Budowanie aplikacji dla SBC w środowisku emulowanym" />
     <published>2023-08-13T09:58:41+02:00</published>
   
-    <updated>2023-08-13T09:58:41+02:00</updated>
+    <updated>2023-08-19T18:19:51+02:00</updated>
   
     <id>https://mikroprofesor.duckdns.org/posts/emulated-building-for-SBC/</id>
     <content src="https://mikroprofesor.duckdns.org/posts/emulated-building-for-SBC/" />
@@ -59,7 +59,7 @@ Niestety natywne uruchamianie kodu z wykorzystaniem GUI pracującego na systemie
     <link href="https://mikroprofesor.duckdns.org/posts/how-to-debug-esp32-with-esp-prog/" rel="alternate" type="text/html" title="Jak uruchamiać programy dla ESP32 korzystając z ESP-Prog" />
     <published>2023-08-12T15:13:20+02:00</published>
   
-    <updated>2023-08-12T15:13:20+02:00</updated>
+    <updated>2023-08-19T18:19:51+02:00</updated>
   
     <id>https://mikroprofesor.duckdns.org/posts/how-to-debug-esp32-with-esp-prog/</id>
     <content src="https://mikroprofesor.duckdns.org/posts/how-to-debug-esp32-with-esp-prog/" />
@@ -89,11 +89,10 @@ Niniejszy dokument opisuje jak korzystać z tego urządzenia w systemie Linux z 
 
 Anatomia ESP-Prog
 
+
+
 Płyta ESP-Prog jest wyposażona w dwa złącza służące do komunikacji z urządzeniem docelowym.
-
-
-
-Złącze PROG służy do wgrania nowej wersji firmware’u na urządzenie doc...
+Złącze PROG służy do wgrania nowej wersji firmware’u na urządzenie doce...
     </summary>
   
 

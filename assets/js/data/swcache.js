@@ -30,6 +30,7 @@ const resource = [
         '/pejotzet/assets/img/favicons/favicon-32x32.png',
         '/pejotzet/assets/img/favicons/favicon.ico',
         '/pejotzet/assets/img/favicons/mstile-150x150.png',
+        '/pejotzet/assets/img/favicons/safari-pinned-tab.svg',
         '/pejotzet/assets/js/dist/categories.min.js',
         '/pejotzet/assets/js/dist/commons.min.js',
         '/pejotzet/assets/js/dist/home.min.js',
